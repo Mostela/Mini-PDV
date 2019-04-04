@@ -27,7 +27,7 @@ namespace AutoCozinha
             }
             else
             {
-                Application.Run(new s());
+                Application.Run(new form_principal());
             }
         }
     }

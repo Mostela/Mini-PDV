@@ -35,7 +35,7 @@ namespace AutoCozinha.Telas
         private void btn_salvar_Click(object sender, EventArgs e)
         {
             fundo.NovoFundo(open_buscaFoto.FileName);
-            s main = (s)this.Owner;
+            form_principal main = (form_principal)this.Owner;
             main.CarregaFundo();
             this.Close();
         }

@@ -11,9 +11,9 @@ using System.IO;
 
 namespace AutoCozinha
 {
-    public partial class s : Form
+    public partial class form_principal : Form
     {
-        public s()
+        public form_principal()
         {
             InitializeComponent();
             this.CarregaFundo();
@@ -37,9 +37,16 @@ namespace AutoCozinha
 
         private void imagemDeFundoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Telas.SelecionaFundo selecionaFundo = new Telas.SelecionaFundo();
-            selecionaFundo.Owner = this;
-            selecionaFundo.Show();
+            try
+            {
+                if (Application.OpenForms["SelecionaFundo"] == null)
+                {
+                    Telas.SelecionaFundo selecionaFundo = new Telas.SelecionaFundo();
+                    selecionaFundo.Owner = this;
+                    selecionaFundo.Show();
+                }
+            }
+            catch { }
         }
 
         private void reinicarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -54,14 +61,48 @@ namespace AutoCozinha
 
         private void novoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Telas.Cliente cliente = new Telas.Cliente();
-            cliente.Show();
+            this.ChamaCliente();
         }
 
         private void adicionarClienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Telas.Cliente cliente = new Telas.Cliente();
-            cliente.Show();
+            this.ChamaCliente();
+        }
+
+        private void cadastrarNovoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ChamaProduto();
+        }
+
+        private void ChamaCliente(string nome = null)
+        {
+            try
+            {
+                if (Application.OpenForms["Cliente"] == null)
+                {
+                    Telas.Cliente cliente = new Telas.Cliente();
+                    cliente.Show();
+                }
+            }
+            catch { }
+        }
+
+        private void ChamaProduto()
+        {
+            Telas.Produto produto = new Telas.Produto();
+            try
+            {
+                if (Application.OpenForms["Produto"] == null)
+                {
+                    produto.Show();
+                }
+                else
+                {
+                    MessageBox.Show("A tela Produtos ja estava aberta");
+                    produto.Activate();
+                }
+            }
+            catch {}
         }
     }
 }
