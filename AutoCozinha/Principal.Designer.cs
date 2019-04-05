@@ -118,6 +118,7 @@
             this.entregaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.solicitarOrçamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adicionarClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alterarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pan_barraInfo = new System.Windows.Forms.Panel();
             this.btn_reset = new System.Windows.Forms.Button();
             this.image_lista_main = new System.Windows.Forms.ImageList(this.components);
@@ -145,6 +146,7 @@
             this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pan_cod_produto = new System.Windows.Forms.Panel();
+            this.picBox_codebar = new System.Windows.Forms.PictureBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.lb_codigo = new System.Windows.Forms.Label();
             this.pan_dir_options = new System.Windows.Forms.Panel();
@@ -156,13 +158,23 @@
             this.btn_pagar = new System.Windows.Forms.Button();
             this.lb_tituloCarrinho = new System.Windows.Forms.Label();
             this.panel_funcaos = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.lb_ValueDesconto = new System.Windows.Forms.Label();
+            this.lb_desconto = new System.Windows.Forms.Label();
+            this.lb_ValueNomeCliente = new System.Windows.Forms.Label();
+            this.lb_NomeCliente = new System.Windows.Forms.Label();
+            this.text_cpfCliente = new System.Windows.Forms.MaskedTextBox();
+            this.lb_cpfFidelidade = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.lb_descontoTotal = new System.Windows.Forms.Label();
             this.lb_imposto = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.lb_valorRecebido = new System.Windows.Forms.Label();
             this.lb_troco = new System.Windows.Forms.Label();
             this.gpBox_metodo = new System.Windows.Forms.GroupBox();
+            this.radio_fidelidade = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radio_dinheiro = new System.Windows.Forms.RadioButton();
@@ -171,18 +183,6 @@
             this.btn_emitirComprovante = new System.Windows.Forms.Button();
             this.btn_pagarCentro = new System.Windows.Forms.Button();
             this.btn_novaCompra = new System.Windows.Forms.Button();
-            this.picBox_codebar = new System.Windows.Forms.PictureBox();
-            this.alterarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.radio_fidelidade = new System.Windows.Forms.RadioButton();
-            this.lb_descontoTotal = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lb_cpfFidelidade = new System.Windows.Forms.Label();
-            this.text_cpfCliente = new System.Windows.Forms.MaskedTextBox();
-            this.lb_NomeCliente = new System.Windows.Forms.Label();
-            this.lb_ValueNomeCliente = new System.Windows.Forms.Label();
-            this.lb_desconto = new System.Windows.Forms.Label();
-            this.lb_ValueDesconto = new System.Windows.Forms.Label();
             this.barra_geral.SuspendLayout();
             this.menu_telaMain.SuspendLayout();
             this.pan_barraInfo.SuspendLayout();
@@ -195,15 +195,15 @@
             this.pan_direita.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_carrinho)).BeginInit();
             this.pan_cod_produto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBox_codebar)).BeginInit();
             this.pan_dir_options.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_itens)).BeginInit();
             this.panel_funcaos.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.gpBox_metodo.SuspendLayout();
             this.panel_botoes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBox_codebar)).BeginInit();
-            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // barra_geral
@@ -243,34 +243,34 @@
             // 
             this.buscarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("buscarToolStripMenuItem.Image")));
             this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
-            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.buscarToolStripMenuItem.Text = "Buscar";
             // 
             // novoToolStripMenuItem
             // 
             this.novoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("novoToolStripMenuItem.Image")));
             this.novoToolStripMenuItem.Name = "novoToolStripMenuItem";
-            this.novoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.novoToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.novoToolStripMenuItem.Text = "Novo";
             this.novoToolStripMenuItem.Click += new System.EventHandler(this.novoToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(133, 6);
             // 
             // emDebitoToolStripMenuItem
             // 
             this.emDebitoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("emDebitoToolStripMenuItem.Image")));
             this.emDebitoToolStripMenuItem.Name = "emDebitoToolStripMenuItem";
-            this.emDebitoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.emDebitoToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.emDebitoToolStripMenuItem.Text = "Em debito";
             // 
             // bloqueadosToolStripMenuItem
             // 
             this.bloqueadosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("bloqueadosToolStripMenuItem.Image")));
             this.bloqueadosToolStripMenuItem.Name = "bloqueadosToolStripMenuItem";
-            this.bloqueadosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bloqueadosToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.bloqueadosToolStripMenuItem.Text = "Bloqueados";
             // 
             // produtosToolStripMenuItem
@@ -290,7 +290,7 @@
             // 
             this.cadastrarNovoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cadastrarNovoToolStripMenuItem.Image")));
             this.cadastrarNovoToolStripMenuItem.Name = "cadastrarNovoToolStripMenuItem";
-            this.cadastrarNovoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastrarNovoToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.cadastrarNovoToolStripMenuItem.Text = "Cadastrar novo";
             this.cadastrarNovoToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovoToolStripMenuItem_Click);
             // 
@@ -298,20 +298,20 @@
             // 
             this.pesquisarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pesquisarToolStripMenuItem.Image")));
             this.pesquisarToolStripMenuItem.Name = "pesquisarToolStripMenuItem";
-            this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.pesquisarToolStripMenuItem.Text = "Pesquisar";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
             // 
             // emEnvioToolStripMenuItem
             // 
             this.emEnvioToolStripMenuItem.Enabled = false;
             this.emEnvioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("emEnvioToolStripMenuItem.Image")));
             this.emEnvioToolStripMenuItem.Name = "emEnvioToolStripMenuItem";
-            this.emEnvioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.emEnvioToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.emEnvioToolStripMenuItem.Text = "Para receber";
             this.emEnvioToolStripMenuItem.Visible = false;
             // 
@@ -628,12 +628,14 @@
             this.novoUsuarioToolStripMenuItem.Name = "novoUsuarioToolStripMenuItem";
             this.novoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.novoUsuarioToolStripMenuItem.Text = "Novo usuario";
+            this.novoUsuarioToolStripMenuItem.Click += new System.EventHandler(this.novoUsuarioToolStripMenuItem_Click);
             // 
             // alterarDadosToolStripMenuItem
             // 
             this.alterarDadosToolStripMenuItem.Name = "alterarDadosToolStripMenuItem";
             this.alterarDadosToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.alterarDadosToolStripMenuItem.Text = "Alterar dados";
+            this.alterarDadosToolStripMenuItem.Click += new System.EventHandler(this.alterarDadosToolStripMenuItem_Click);
             // 
             // entregasToolStripMenuItem
             // 
@@ -923,6 +925,13 @@
             this.adicionarClienteToolStripMenuItem.Size = new System.Drawing.Size(124, 20);
             this.adicionarClienteToolStripMenuItem.Text = "Adicionar cliente";
             this.adicionarClienteToolStripMenuItem.Click += new System.EventHandler(this.adicionarClienteToolStripMenuItem_Click);
+            // 
+            // alterarUsuarioToolStripMenuItem
+            // 
+            this.alterarUsuarioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("alterarUsuarioToolStripMenuItem.Image")));
+            this.alterarUsuarioToolStripMenuItem.Name = "alterarUsuarioToolStripMenuItem";
+            this.alterarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.alterarUsuarioToolStripMenuItem.Text = "Alterar usuario";
             // 
             // pan_barraInfo
             // 
@@ -1235,6 +1244,15 @@
             this.pan_cod_produto.Size = new System.Drawing.Size(263, 44);
             this.pan_cod_produto.TabIndex = 2;
             // 
+            // picBox_codebar
+            // 
+            this.picBox_codebar.Image = ((System.Drawing.Image)(resources.GetObject("picBox_codebar.Image")));
+            this.picBox_codebar.Location = new System.Drawing.Point(6, 6);
+            this.picBox_codebar.Name = "picBox_codebar";
+            this.picBox_codebar.Size = new System.Drawing.Size(46, 32);
+            this.picBox_codebar.TabIndex = 2;
+            this.picBox_codebar.TabStop = false;
+            // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(55, 18);
@@ -1361,6 +1379,85 @@
             this.panel_funcaos.Size = new System.Drawing.Size(274, 666);
             this.panel_funcaos.TabIndex = 6;
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.SystemColors.Control;
+            this.panel5.Controls.Add(this.lb_ValueDesconto);
+            this.panel5.Controls.Add(this.lb_desconto);
+            this.panel5.Controls.Add(this.lb_ValueNomeCliente);
+            this.panel5.Controls.Add(this.lb_NomeCliente);
+            this.panel5.Controls.Add(this.text_cpfCliente);
+            this.panel5.Controls.Add(this.lb_cpfFidelidade);
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.Location = new System.Drawing.Point(82, 182);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(126, 134);
+            this.panel5.TabIndex = 23;
+            // 
+            // lb_ValueDesconto
+            // 
+            this.lb_ValueDesconto.AutoSize = true;
+            this.lb_ValueDesconto.Location = new System.Drawing.Point(85, 106);
+            this.lb_ValueDesconto.Name = "lb_ValueDesconto";
+            this.lb_ValueDesconto.Size = new System.Drawing.Size(27, 13);
+            this.lb_ValueDesconto.TabIndex = 6;
+            this.lb_ValueDesconto.Text = "10%";
+            // 
+            // lb_desconto
+            // 
+            this.lb_desconto.AutoSize = true;
+            this.lb_desconto.Location = new System.Drawing.Point(29, 106);
+            this.lb_desconto.Name = "lb_desconto";
+            this.lb_desconto.Size = new System.Drawing.Size(56, 13);
+            this.lb_desconto.TabIndex = 5;
+            this.lb_desconto.Text = "Desconto:";
+            // 
+            // lb_ValueNomeCliente
+            // 
+            this.lb_ValueNomeCliente.AutoSize = true;
+            this.lb_ValueNomeCliente.Location = new System.Drawing.Point(29, 76);
+            this.lb_ValueNomeCliente.Name = "lb_ValueNomeCliente";
+            this.lb_ValueNomeCliente.Size = new System.Drawing.Size(62, 13);
+            this.lb_ValueNomeCliente.TabIndex = 4;
+            this.lb_ValueNomeCliente.Text = "João Carlos";
+            // 
+            // lb_NomeCliente
+            // 
+            this.lb_NomeCliente.AutoSize = true;
+            this.lb_NomeCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_NomeCliente.Location = new System.Drawing.Point(46, 56);
+            this.lb_NomeCliente.Name = "lb_NomeCliente";
+            this.lb_NomeCliente.Size = new System.Drawing.Size(45, 15);
+            this.lb_NomeCliente.TabIndex = 3;
+            this.lb_NomeCliente.Text = "Nome";
+            // 
+            // text_cpfCliente
+            // 
+            this.text_cpfCliente.Location = new System.Drawing.Point(36, 24);
+            this.text_cpfCliente.Mask = "000.000.000-00";
+            this.text_cpfCliente.Name = "text_cpfCliente";
+            this.text_cpfCliente.Size = new System.Drawing.Size(83, 20);
+            this.text_cpfCliente.TabIndex = 2;
+            // 
+            // lb_cpfFidelidade
+            // 
+            this.lb_cpfFidelidade.AutoSize = true;
+            this.lb_cpfFidelidade.Location = new System.Drawing.Point(8, 27);
+            this.lb_cpfFidelidade.Name = "lb_cpfFidelidade";
+            this.lb_cpfFidelidade.Size = new System.Drawing.Size(30, 13);
+            this.lb_cpfFidelidade.TabIndex = 1;
+            this.lb_cpfFidelidade.Text = "CPF:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(8, -1);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(109, 17);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Dados Cliente";
+            // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.Control;
@@ -1383,6 +1480,15 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(262, 81);
             this.panel7.TabIndex = 21;
+            // 
+            // lb_descontoTotal
+            // 
+            this.lb_descontoTotal.AutoSize = true;
+            this.lb_descontoTotal.Location = new System.Drawing.Point(134, 58);
+            this.lb_descontoTotal.Name = "lb_descontoTotal";
+            this.lb_descontoTotal.Size = new System.Drawing.Size(73, 13);
+            this.lb_descontoTotal.TabIndex = 21;
+            this.lb_descontoTotal.Text = "Desconto: 0%";
             // 
             // lb_imposto
             // 
@@ -1432,6 +1538,16 @@
             this.gpBox_metodo.TabStop = false;
             this.gpBox_metodo.Text = "Metodo pagamento";
             // 
+            // radio_fidelidade
+            // 
+            this.radio_fidelidade.AutoSize = true;
+            this.radio_fidelidade.Location = new System.Drawing.Point(6, 58);
+            this.radio_fidelidade.Name = "radio_fidelidade";
+            this.radio_fidelidade.Size = new System.Drawing.Size(73, 17);
+            this.radio_fidelidade.TabIndex = 3;
+            this.radio_fidelidade.Text = "Fidelidade";
+            this.radio_fidelidade.UseVisualStyleBackColor = true;
+            // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
@@ -1460,6 +1576,7 @@
             this.radio_dinheiro.Name = "radio_dinheiro";
             this.radio_dinheiro.Size = new System.Drawing.Size(64, 17);
             this.radio_dinheiro.TabIndex = 0;
+            this.radio_dinheiro.TabStop = true;
             this.radio_dinheiro.Text = "Dinheiro";
             this.radio_dinheiro.UseVisualStyleBackColor = true;
             // 
@@ -1520,120 +1637,6 @@
             this.btn_novaCompra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_novaCompra.UseVisualStyleBackColor = true;
             // 
-            // picBox_codebar
-            // 
-            this.picBox_codebar.Image = ((System.Drawing.Image)(resources.GetObject("picBox_codebar.Image")));
-            this.picBox_codebar.Location = new System.Drawing.Point(6, 6);
-            this.picBox_codebar.Name = "picBox_codebar";
-            this.picBox_codebar.Size = new System.Drawing.Size(46, 32);
-            this.picBox_codebar.TabIndex = 2;
-            this.picBox_codebar.TabStop = false;
-            // 
-            // alterarUsuarioToolStripMenuItem
-            // 
-            this.alterarUsuarioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("alterarUsuarioToolStripMenuItem.Image")));
-            this.alterarUsuarioToolStripMenuItem.Name = "alterarUsuarioToolStripMenuItem";
-            this.alterarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
-            this.alterarUsuarioToolStripMenuItem.Text = "Alterar usuario";
-            // 
-            // radio_fidelidade
-            // 
-            this.radio_fidelidade.AutoSize = true;
-            this.radio_fidelidade.Location = new System.Drawing.Point(6, 58);
-            this.radio_fidelidade.Name = "radio_fidelidade";
-            this.radio_fidelidade.Size = new System.Drawing.Size(73, 17);
-            this.radio_fidelidade.TabIndex = 3;
-            this.radio_fidelidade.Text = "Fidelidade";
-            this.radio_fidelidade.UseVisualStyleBackColor = true;
-            // 
-            // lb_descontoTotal
-            // 
-            this.lb_descontoTotal.AutoSize = true;
-            this.lb_descontoTotal.Location = new System.Drawing.Point(134, 58);
-            this.lb_descontoTotal.Name = "lb_descontoTotal";
-            this.lb_descontoTotal.Size = new System.Drawing.Size(73, 13);
-            this.lb_descontoTotal.TabIndex = 21;
-            this.lb_descontoTotal.Text = "Desconto: 0%";
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.SystemColors.Control;
-            this.panel5.Controls.Add(this.lb_ValueDesconto);
-            this.panel5.Controls.Add(this.lb_desconto);
-            this.panel5.Controls.Add(this.lb_ValueNomeCliente);
-            this.panel5.Controls.Add(this.lb_NomeCliente);
-            this.panel5.Controls.Add(this.text_cpfCliente);
-            this.panel5.Controls.Add(this.lb_cpfFidelidade);
-            this.panel5.Controls.Add(this.label4);
-            this.panel5.Location = new System.Drawing.Point(82, 182);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(126, 134);
-            this.panel5.TabIndex = 23;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(8, -1);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(109, 17);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Dados Cliente";
-            // 
-            // lb_cpfFidelidade
-            // 
-            this.lb_cpfFidelidade.AutoSize = true;
-            this.lb_cpfFidelidade.Location = new System.Drawing.Point(8, 27);
-            this.lb_cpfFidelidade.Name = "lb_cpfFidelidade";
-            this.lb_cpfFidelidade.Size = new System.Drawing.Size(30, 13);
-            this.lb_cpfFidelidade.TabIndex = 1;
-            this.lb_cpfFidelidade.Text = "CPF:";
-            // 
-            // text_cpfCliente
-            // 
-            this.text_cpfCliente.Location = new System.Drawing.Point(36, 24);
-            this.text_cpfCliente.Mask = "000.000.000-00";
-            this.text_cpfCliente.Name = "text_cpfCliente";
-            this.text_cpfCliente.Size = new System.Drawing.Size(83, 20);
-            this.text_cpfCliente.TabIndex = 2;
-            // 
-            // lb_NomeCliente
-            // 
-            this.lb_NomeCliente.AutoSize = true;
-            this.lb_NomeCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_NomeCliente.Location = new System.Drawing.Point(46, 56);
-            this.lb_NomeCliente.Name = "lb_NomeCliente";
-            this.lb_NomeCliente.Size = new System.Drawing.Size(45, 15);
-            this.lb_NomeCliente.TabIndex = 3;
-            this.lb_NomeCliente.Text = "Nome";
-            // 
-            // lb_ValueNomeCliente
-            // 
-            this.lb_ValueNomeCliente.AutoSize = true;
-            this.lb_ValueNomeCliente.Location = new System.Drawing.Point(29, 76);
-            this.lb_ValueNomeCliente.Name = "lb_ValueNomeCliente";
-            this.lb_ValueNomeCliente.Size = new System.Drawing.Size(62, 13);
-            this.lb_ValueNomeCliente.TabIndex = 4;
-            this.lb_ValueNomeCliente.Text = "João Carlos";
-            // 
-            // lb_desconto
-            // 
-            this.lb_desconto.AutoSize = true;
-            this.lb_desconto.Location = new System.Drawing.Point(29, 106);
-            this.lb_desconto.Name = "lb_desconto";
-            this.lb_desconto.Size = new System.Drawing.Size(56, 13);
-            this.lb_desconto.TabIndex = 5;
-            this.lb_desconto.Text = "Desconto:";
-            // 
-            // lb_ValueDesconto
-            // 
-            this.lb_ValueDesconto.AutoSize = true;
-            this.lb_ValueDesconto.Location = new System.Drawing.Point(85, 106);
-            this.lb_ValueDesconto.Name = "lb_ValueDesconto";
-            this.lb_ValueDesconto.Size = new System.Drawing.Size(27, 13);
-            this.lb_ValueDesconto.TabIndex = 6;
-            this.lb_ValueDesconto.Text = "10%";
-            // 
             // form_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1673,10 +1676,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_carrinho)).EndInit();
             this.pan_cod_produto.ResumeLayout(false);
             this.pan_cod_produto.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBox_codebar)).EndInit();
             this.pan_dir_options.ResumeLayout(false);
             this.pan_dir_options.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_itens)).EndInit();
             this.panel_funcaos.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -1684,9 +1690,6 @@
             this.gpBox_metodo.ResumeLayout(false);
             this.gpBox_metodo.PerformLayout();
             this.panel_botoes.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picBox_codebar)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

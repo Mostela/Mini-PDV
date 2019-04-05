@@ -33,11 +33,10 @@
             this.lb_titulo = new System.Windows.Forms.Label();
             this.lb_user = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lb_esqueci = new System.Windows.Forms.LinkLabel();
-            this.lb_novoUser = new System.Windows.Forms.LinkLabel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btn_acessar = new System.Windows.Forms.Button();
+            this.btn_esqueciSenha = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,26 +78,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Senha:";
             // 
-            // lb_esqueci
-            // 
-            this.lb_esqueci.AutoSize = true;
-            this.lb_esqueci.Location = new System.Drawing.Point(392, 259);
-            this.lb_esqueci.Name = "lb_esqueci";
-            this.lb_esqueci.Size = new System.Drawing.Size(86, 13);
-            this.lb_esqueci.TabIndex = 4;
-            this.lb_esqueci.TabStop = true;
-            this.lb_esqueci.Text = "Esqueci a senha";
-            // 
-            // lb_novoUser
-            // 
-            this.lb_novoUser.AutoSize = true;
-            this.lb_novoUser.Location = new System.Drawing.Point(127, 259);
-            this.lb_novoUser.Name = "lb_novoUser";
-            this.lb_novoUser.Size = new System.Drawing.Size(70, 13);
-            this.lb_novoUser.TabIndex = 5;
-            this.lb_novoUser.TabStop = true;
-            this.lb_novoUser.Text = "Novo usuario";
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(168, 139);
@@ -125,17 +104,26 @@
             this.btn_acessar.UseVisualStyleBackColor = false;
             this.btn_acessar.Click += new System.EventHandler(this.btn_acessar_Click);
             // 
+            // btn_esqueciSenha
+            // 
+            this.btn_esqueciSenha.Location = new System.Drawing.Point(13, 249);
+            this.btn_esqueciSenha.Name = "btn_esqueciSenha";
+            this.btn_esqueciSenha.Size = new System.Drawing.Size(103, 23);
+            this.btn_esqueciSenha.TabIndex = 9;
+            this.btn_esqueciSenha.Text = "Esqueci a senha";
+            this.btn_esqueciSenha.UseVisualStyleBackColor = true;
+            this.btn_esqueciSenha.Click += new System.EventHandler(this.btn_esqueciSenha_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(586, 284);
+            this.Controls.Add(this.btn_esqueciSenha);
             this.Controls.Add(this.btn_acessar);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.lb_novoUser);
-            this.Controls.Add(this.lb_esqueci);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lb_user);
             this.Controls.Add(this.lb_titulo);
@@ -155,10 +143,9 @@
         private System.Windows.Forms.Label lb_titulo;
         private System.Windows.Forms.Label lb_user;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.LinkLabel lb_esqueci;
-        private System.Windows.Forms.LinkLabel lb_novoUser;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button btn_acessar;
+        private System.Windows.Forms.Button btn_esqueciSenha;
     }
 }

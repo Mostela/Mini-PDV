@@ -104,5 +104,33 @@ namespace AutoCozinha
             }
             catch {}
         }
+
+        private void ChamaUsuario()
+        {
+            Telas.Usuarios Usuario = new Telas.Usuarios();
+            try
+            {
+                if (Application.OpenForms["Usuarios"] == null)
+                {
+                    Usuario.Show();
+                }
+                else
+                {
+                    MessageBox.Show("A tela Usuario ja estava aberta");
+                    Usuario.Activate();
+                }
+            }
+            catch { }
+        }
+
+        private void alterarDadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ChamaUsuario();
+        }
+
+        private void novoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ChamaUsuario();
+        }
     }
 }

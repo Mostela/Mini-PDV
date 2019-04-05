@@ -22,5 +22,11 @@ namespace AutoCozinha.Telas
             Classes.Usuario.login = true;
             this.Close();
         }
+
+        private void btn_esqueciSenha_Click(object sender, EventArgs e)
+        {
+            Telas.Usuarios usuarios = new Telas.Usuarios();
+            usuarios.Show();
+        }
     }
 }
