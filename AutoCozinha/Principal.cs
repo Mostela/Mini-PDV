@@ -132,5 +132,13 @@ namespace AutoCozinha
         {
             this.ChamaUsuario();
         }
+
+        private void form_principal_Load(object sender, EventArgs e)
+        {
+            Classes.ConsultaRapida consulta = new Classes.ConsultaRapida();
+            cBox_modoBuscaProduto.DisplayMember = "metodo";
+            cBox_modoBuscaProduto.ValueMember = "ID";
+            cBox_modoBuscaProduto.DataSource = consulta.Listar();
+        }
     }
 }

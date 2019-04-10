@@ -393,6 +393,7 @@
             this.financeiroToolStripMenuItem.Name = "financeiroToolStripMenuItem";
             this.financeiroToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.financeiroToolStripMenuItem.Text = "Financeiro";
+            this.financeiroToolStripMenuItem.Visible = false;
             // 
             // cotaçãoToolStripMenuItem
             // 
@@ -1658,6 +1659,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AutoCozinha";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.form_principal_Load);
             this.barra_geral.ResumeLayout(false);
             this.barra_geral.PerformLayout();
             this.menu_telaMain.ResumeLayout(false);

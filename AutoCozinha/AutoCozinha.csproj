@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\AlterarFundo.cs" />
+    <Compile Include="Classes\ConsultaRapida.cs" />
     <Compile Include="Classes\Usuario.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
