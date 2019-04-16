@@ -19,8 +19,16 @@ namespace AutoCozinha.Telas
 
         private void btn_acessar_Click(object sender, EventArgs e)
         {
-            Classes.Usuario.login = true;
-            this.Close();
+            Classes.Usuario usuario = new Classes.Usuario();
+            Classes.Usuario.login = usuario.VerificaAcesso(tx_email.Text, tx_senha.Text);
+            if (Classes.Usuario.login)
+            {
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Email ou senha incorretos!");
+            }
         }
 
         private void btn_esqueciSenha_Click(object sender, EventArgs e)

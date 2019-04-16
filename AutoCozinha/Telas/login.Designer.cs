@@ -33,8 +33,8 @@
             this.lb_titulo = new System.Windows.Forms.Label();
             this.lb_user = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tx_email = new System.Windows.Forms.TextBox();
+            this.tx_senha = new System.Windows.Forms.TextBox();
             this.btn_acessar = new System.Windows.Forms.Button();
             this.btn_esqueciSenha = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -78,19 +78,19 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Senha:";
             // 
-            // textBox1
+            // tx_email
             // 
-            this.textBox1.Location = new System.Drawing.Point(168, 139);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(310, 20);
-            this.textBox1.TabIndex = 6;
+            this.tx_email.Location = new System.Drawing.Point(168, 139);
+            this.tx_email.Name = "tx_email";
+            this.tx_email.Size = new System.Drawing.Size(310, 20);
+            this.tx_email.TabIndex = 6;
             // 
-            // textBox2
+            // tx_senha
             // 
-            this.textBox2.Location = new System.Drawing.Point(168, 188);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(310, 20);
-            this.textBox2.TabIndex = 7;
+            this.tx_senha.Location = new System.Drawing.Point(168, 188);
+            this.tx_senha.Name = "tx_senha";
+            this.tx_senha.Size = new System.Drawing.Size(310, 20);
+            this.tx_senha.TabIndex = 7;
             // 
             // btn_acessar
             // 
@@ -122,14 +122,15 @@
             this.ClientSize = new System.Drawing.Size(586, 284);
             this.Controls.Add(this.btn_esqueciSenha);
             this.Controls.Add(this.btn_acessar);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tx_senha);
+            this.Controls.Add(this.tx_email);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lb_user);
             this.Controls.Add(this.lb_titulo);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -143,8 +144,8 @@
         private System.Windows.Forms.Label lb_titulo;
         private System.Windows.Forms.Label lb_user;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tx_email;
+        private System.Windows.Forms.TextBox tx_senha;
         private System.Windows.Forms.Button btn_acessar;
         private System.Windows.Forms.Button btn_esqueciSenha;
     }
