@@ -17,16 +17,33 @@ namespace AutoCozinha.Telas
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Verifica se é possivel habilitar o botão salvar
+        /// </summary>
+        private void HabilitaBtnSalvar()
+        {
+            if (usuario.nivelAcesso != -1 && tx_email.Text != null && tx_nome != null && tx_senha != null)
+            {
+                btn_alterar.Enabled = true;
+            }
+            else
+            {
+                btn_alterar.Enabled = false;
+            }
+        }
 
         Classes.Usuario usuario = new Classes.Usuario();
 
         private void btn_alterar_Click(object sender, EventArgs e)
         {
-            usuario. tx_email.Text;
+            usuario.email = tx_email.Text;
+            usuario.nome = tx_nome.Text;
+            usuario.senha = tx_senha.Text;
             if (!Classes.Usuario.login)
             {
                 usuario.Cadastrar();
-                MessageBox.Show("Senha recuperada com sucesso!!");
+                MessageBox.Show("Novo usuario adicionado com sucesso!!");
+                Application.Restart();
             }
         }
 
@@ -49,16 +66,26 @@ namespace AutoCozinha.Telas
             {
                 Classes.NiveisAcesso niveis = new Classes.NiveisAcesso();
 
-                cBox_nivel.DisplayMember = "nome";
+                cBox_nivel.DisplayMember = "cargo";
                 cBox_nivel.ValueMember = "nivel";
 
                 cBox_nivel.DataSource = niveis.Mostra();
             }
         }
 
-        private void textBox1_Leave(object sender, EventArgs e)
+        private void tx_nome_KeyUp(object sender, KeyEventArgs e)
         {
+            this.HabilitaBtnSalvar();
+        }
 
+        private void tx_email_KeyUp(object sender, KeyEventArgs e)
+        {
+            this.HabilitaBtnSalvar();
+        }
+
+        private void tx_senha_KeyUp(object sender, KeyEventArgs e)
+        {
+            this.HabilitaBtnSalvar();
         }
     }
 }

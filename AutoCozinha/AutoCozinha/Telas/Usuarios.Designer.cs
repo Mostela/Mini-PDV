@@ -80,6 +80,7 @@
             this.tx_senha.PasswordChar = '*';
             this.tx_senha.Size = new System.Drawing.Size(157, 20);
             this.tx_senha.TabIndex = 13;
+            this.tx_senha.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tx_senha_KeyUp);
             // 
             // tx_email
             // 
@@ -87,6 +88,7 @@
             this.tx_email.Name = "tx_email";
             this.tx_email.Size = new System.Drawing.Size(157, 20);
             this.tx_email.TabIndex = 12;
+            this.tx_email.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tx_email_KeyUp);
             // 
             // tx_nome
             // 
@@ -94,7 +96,7 @@
             this.tx_nome.Name = "tx_nome";
             this.tx_nome.Size = new System.Drawing.Size(157, 20);
             this.tx_nome.TabIndex = 11;
-            this.tx_nome.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.tx_nome.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tx_nome_KeyUp);
             // 
             // dataGridView1
             // 
