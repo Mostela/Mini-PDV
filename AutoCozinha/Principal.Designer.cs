@@ -213,10 +213,10 @@
             this.barra_geral.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clienteToolStripMenuItem2,
             this.produtosToolStripMenuItem,
+            this.usuarioToolStripMenuItem,
             this.estoqueToolStripMenuItem,
             this.financeiroToolStripMenuItem,
             this.clienteToolStripMenuItem1,
-            this.usuarioToolStripMenuItem,
             this.entregasToolStripMenuItem,
             this.configuraçãoToolStripMenuItem});
             this.barra_geral.Location = new System.Drawing.Point(0, 0);

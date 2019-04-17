@@ -16,7 +16,17 @@ namespace AutoCozinha
         public form_principal()
         {
             InitializeComponent();
-            this.CarregaFundo();
+            switch (Classes.NiveisAcesso.nivelAcessoHabilitado)
+            {
+                case 1:
+                    novoUsuarioToolStripMenuItem.HideDropDown();
+                    cadastrarNovoToolStripMenuItem.HideDropDown();
+                    break;
+
+                case 2:
+                    novoUsuarioToolStripMenuItem.HideDropDown();
+                    break;
+            }
         }
         public void CarregaFundo()
         {
@@ -135,6 +145,8 @@ namespace AutoCozinha
 
         private void form_principal_Load(object sender, EventArgs e)
         {
+            this.CarregaFundo();
+
             Classes.ConsultaRapida consulta = new Classes.ConsultaRapida();
             cBox_modoBuscaProduto.DisplayMember = "metodo";
             cBox_modoBuscaProduto.ValueMember = "ID";

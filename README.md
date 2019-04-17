@@ -1,12 +1,12 @@
 # **Prova Ambientes Visuais**
 ## Prova do professor Paulo Jose
-#### Data de entrega: 05/05/2019
+#### Data de entrega: 05/06/2019
 #### Status: **Em Desenvolvimento**
 
-## -----------------------------------------
+
 
 ##### M1 10/04/2019 - Aprovado nota 10!
-##### M2 05/05/2019
+##### M2 05/06/2019
 
 ## ENTREGA
 ##### A data de entrega da prova é dividade em duas.
@@ -19,8 +19,13 @@
 #### * Banco de dados orientado a documentos [LiteDB](https://www.litedb.org/)
 
 ## ALUNOS
-##### João Carlos Camargo Andrade
-##### Luis Henrique Machado
+#### João Carlos Camargo Andrade
+###### Twitter: [@Mostela_](https://twitter.com/mostela_)
+
+#### Luis Henrique Machado
+###### Twitter: [@Lumaro0](https://twitter.com/Lumaro0)
+
+
 
 ## UNIVERSIDADE
 ###### [Universidade De Mogi Das Cruzes](http://www.umc.br) 03/04/2019	

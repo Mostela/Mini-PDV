@@ -7,7 +7,7 @@ using LiteDB;
 
 namespace AutoCozinha.Classes
 {
-    class Usuario
+    class Usuario : Estoque
     {
         [BsonId]
         public int ID { get; set;}
@@ -44,7 +44,7 @@ namespace AutoCozinha.Classes
         /// </summary>
         public void Cadastrar()
         {
-            using (var db = new LiteDatabase("Filename=smartBoss.db"))
+            using (var db = new LiteDatabase(BaseDados.local))
             {
                 db.GetCollection<Classes.Usuario>().Insert(this);
             }
@@ -58,7 +58,7 @@ namespace AutoCozinha.Classes
         public bool VerificaAcesso(string email, string senha)
         {
             bool flag = false;
-            using (var bd = new LiteDatabase("Filename=smartBoss.db"))
+            using (var bd = new LiteDatabase(BaseDados.local))
             {
                 var user = bd.GetCollection<Usuario>().FindAll().Where(x => x.email == email && x.senha == senha).ToList();
                 if(user.Count > 0)
