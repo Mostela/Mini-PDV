@@ -9,7 +9,7 @@ namespace AutoCozinha.Classes
 {
     class Estoque
     {
-        public int NumLote { set; get; }
+        public string NumLote { set; get; }
         public int quantidade { set; get; }
         /// <summary>
         /// Busca e retorna em lista todos os produtos no estoque

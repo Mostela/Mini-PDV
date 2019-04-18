@@ -30,7 +30,7 @@ namespace AutoCozinha.Classes
         /// <param name="nome"></param>
         /// <param name="codigo"></param>
         /// <param name="ID"></param>
-        public Produto(double preco, int lote, string validade, string nome, string codigo,string descricao, int ID = 0)
+        public Produto(double preco, string lote, string validade, string nome, string codigo,string descricao,int quantidade, int ID = 0)
         {
             this.ID = ID;
             this.preco = preco;
@@ -39,16 +39,25 @@ namespace AutoCozinha.Classes
             this.nomeReferencia = nome;
             this.codigo = codigo;
             this.descricao = descricao;
+            this.quantidade = quantidade;
         }
 
         /// <summary>
         /// Cadastra um novo produto com a classe produto carregada
         /// </summary>
-        public void Cadastra()
+        public bool Cadastra()
         {
-            using (var db = new LiteDatabase(BaseDados.local))
+            try
             {
-                db.GetCollection<Produto>().Insert(this);
+                using (var db = new LiteDatabase(BaseDados.local))
+                {
+                    db.GetCollection<Produto>().Insert(this);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
         /// <summary>

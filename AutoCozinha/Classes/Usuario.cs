@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using LiteDB;
 
 namespace AutoCozinha.Classes
 {
-    class Usuario : Estoque
+    class Usuario
     {
         [BsonId]
         public int ID { get; set;}
@@ -58,6 +59,7 @@ namespace AutoCozinha.Classes
         public bool VerificaAcesso(string email, string senha)
         {
             bool flag = false;
+            senha = this.GeraHasMD5(senha);
             using (var bd = new LiteDatabase(BaseDados.local))
             {
                 var user = bd.GetCollection<Usuario>().FindAll().Where(x => x.email == email && x.senha == senha).ToList();
@@ -69,6 +71,24 @@ namespace AutoCozinha.Classes
                 }
             }
             return flag;
+        }
+
+        protected string GeraHasMD5(string valor)
+        {
+            MD5 md5Hash = MD5.Create();
+            // Converter a String para array de bytes, que é como a biblioteca trabalha.
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(valor));
+
+            // Cria-se um StringBuilder para recompôr a string.
+            StringBuilder sBuilder = new StringBuilder();
+
+            // Loop para formatar cada byte como uma String em hexadecimal
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            return sBuilder.ToString();
         }
 
 
