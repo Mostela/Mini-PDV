@@ -42,6 +42,9 @@
             this.pesquisarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.emEnvioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.novoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alterarDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estoqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listaDeProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.emFaltaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,9 +82,6 @@
             this.possibilidadeFiscalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.produtosVendidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bloqueadosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.novoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.alterarDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entregasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.novoEntregadorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarEntregadorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -124,16 +124,11 @@
             this.image_lista_main = new System.Windows.Forms.ImageList(this.components);
             this.pan_esquerda = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.nome_produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantia_estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valor_produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.desconto_produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGrid_produtos = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cBox_modoBuscaProduto = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tx_buscaProduto = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -142,9 +137,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pan_direita = new System.Windows.Forms.Panel();
             this.dataGrid_carrinho = new System.Windows.Forms.DataGridView();
-            this.produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pan_cod_produto = new System.Windows.Forms.Panel();
             this.picBox_codebar = new System.Windows.Forms.PictureBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -183,12 +175,18 @@
             this.btn_emitirComprovante = new System.Windows.Forms.Button();
             this.btn_pagarCentro = new System.Windows.Forms.Button();
             this.btn_novaCompra = new System.Windows.Forms.Button();
+            this.carro_produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carro_valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carro_quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeReferencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barra_geral.SuspendLayout();
             this.menu_telaMain.SuspendLayout();
             this.pan_barraInfo.SuspendLayout();
             this.pan_esquerda.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_produtos)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -314,6 +312,30 @@
             this.emEnvioToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.emEnvioToolStripMenuItem.Text = "Para receber";
             this.emEnvioToolStripMenuItem.Visible = false;
+            // 
+            // usuarioToolStripMenuItem
+            // 
+            this.usuarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.novoUsuarioToolStripMenuItem,
+            this.alterarDadosToolStripMenuItem});
+            this.usuarioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("usuarioToolStripMenuItem.Image")));
+            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.usuarioToolStripMenuItem.Text = "Usuario";
+            // 
+            // novoUsuarioToolStripMenuItem
+            // 
+            this.novoUsuarioToolStripMenuItem.Name = "novoUsuarioToolStripMenuItem";
+            this.novoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.novoUsuarioToolStripMenuItem.Text = "Novo usuario";
+            this.novoUsuarioToolStripMenuItem.Click += new System.EventHandler(this.novoUsuarioToolStripMenuItem_Click);
+            // 
+            // alterarDadosToolStripMenuItem
+            // 
+            this.alterarDadosToolStripMenuItem.Name = "alterarDadosToolStripMenuItem";
+            this.alterarDadosToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.alterarDadosToolStripMenuItem.Text = "Alterar dados";
+            this.alterarDadosToolStripMenuItem.Click += new System.EventHandler(this.alterarDadosToolStripMenuItem_Click);
             // 
             // estoqueToolStripMenuItem
             // 
@@ -613,30 +635,6 @@
             this.bloqueadosToolStripMenuItem1.Name = "bloqueadosToolStripMenuItem1";
             this.bloqueadosToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
             this.bloqueadosToolStripMenuItem1.Text = "Bloqueados";
-            // 
-            // usuarioToolStripMenuItem
-            // 
-            this.usuarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.novoUsuarioToolStripMenuItem,
-            this.alterarDadosToolStripMenuItem});
-            this.usuarioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("usuarioToolStripMenuItem.Image")));
-            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
-            this.usuarioToolStripMenuItem.Text = "Usuario";
-            // 
-            // novoUsuarioToolStripMenuItem
-            // 
-            this.novoUsuarioToolStripMenuItem.Name = "novoUsuarioToolStripMenuItem";
-            this.novoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.novoUsuarioToolStripMenuItem.Text = "Novo usuario";
-            this.novoUsuarioToolStripMenuItem.Click += new System.EventHandler(this.novoUsuarioToolStripMenuItem_Click);
-            // 
-            // alterarDadosToolStripMenuItem
-            // 
-            this.alterarDadosToolStripMenuItem.Name = "alterarDadosToolStripMenuItem";
-            this.alterarDadosToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.alterarDadosToolStripMenuItem.Text = "Alterar dados";
-            this.alterarDadosToolStripMenuItem.Click += new System.EventHandler(this.alterarDadosToolStripMenuItem_Click);
             // 
             // entregasToolStripMenuItem
             // 
@@ -1023,69 +1021,39 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dataGridView2);
+            this.panel3.Controls.Add(this.dataGrid_produtos);
             this.panel3.Controls.Add(this.panel2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 170);
+            this.panel3.Location = new System.Drawing.Point(0, 238);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(303, 191);
+            this.panel3.Size = new System.Drawing.Size(303, 323);
             this.panel3.TabIndex = 4;
             // 
-            // dataGridView2
+            // dataGrid_produtos
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nome_produto,
-            this.quantia_estoque,
-            this.valor_produto,
-            this.desconto_produto});
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 68);
-            this.dataGridView2.MultiSelect = false;
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dataGridView2.Size = new System.Drawing.Size(303, 123);
-            this.dataGridView2.TabIndex = 10;
-            // 
-            // nome_produto
-            // 
-            this.nome_produto.HeaderText = "Nome";
-            this.nome_produto.Name = "nome_produto";
-            this.nome_produto.ReadOnly = true;
-            this.nome_produto.Width = 60;
-            // 
-            // quantia_estoque
-            // 
-            this.quantia_estoque.HeaderText = "Quantidade";
-            this.quantia_estoque.Name = "quantia_estoque";
-            this.quantia_estoque.ReadOnly = true;
-            this.quantia_estoque.Width = 87;
-            // 
-            // valor_produto
-            // 
-            this.valor_produto.HeaderText = "Valor";
-            this.valor_produto.Name = "valor_produto";
-            this.valor_produto.ReadOnly = true;
-            this.valor_produto.Width = 56;
-            // 
-            // desconto_produto
-            // 
-            this.desconto_produto.HeaderText = "Desconto";
-            this.desconto_produto.Name = "desconto_produto";
-            this.desconto_produto.ReadOnly = true;
-            this.desconto_produto.Width = 78;
+            this.dataGrid_produtos.AllowUserToAddRows = false;
+            this.dataGrid_produtos.AllowUserToDeleteRows = false;
+            this.dataGrid_produtos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGrid_produtos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGrid_produtos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid_produtos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nomeReferencia,
+            this.quantidade,
+            this.preco});
+            this.dataGrid_produtos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGrid_produtos.Location = new System.Drawing.Point(0, 68);
+            this.dataGrid_produtos.MultiSelect = false;
+            this.dataGrid_produtos.Name = "dataGrid_produtos";
+            this.dataGrid_produtos.ReadOnly = true;
+            this.dataGrid_produtos.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dataGrid_produtos.Size = new System.Drawing.Size(303, 255);
+            this.dataGrid_produtos.TabIndex = 10;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.cBox_modoBuscaProduto);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.tx_buscaProduto);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -1114,21 +1082,13 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "Consulta rapida produto";
             // 
-            // button2
+            // tx_buscaProduto
             // 
-            this.button2.Location = new System.Drawing.Point(233, 35);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(57, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Buscar";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(84, 35);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(143, 20);
-            this.textBox2.TabIndex = 9;
+            this.tx_buscaProduto.Location = new System.Drawing.Point(84, 35);
+            this.tx_buscaProduto.Name = "tx_buscaProduto";
+            this.tx_buscaProduto.Size = new System.Drawing.Size(206, 20);
+            this.tx_buscaProduto.TabIndex = 9;
+            this.tx_buscaProduto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tx_buscaProduto_KeyUp);
             // 
             // panel4
             // 
@@ -1136,7 +1096,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(303, 170);
+            this.panel4.Size = new System.Drawing.Size(303, 238);
             this.panel4.TabIndex = 5;
             // 
             // panel1
@@ -1206,33 +1166,15 @@
             this.dataGrid_carrinho.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGrid_carrinho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_carrinho.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.produto,
-            this.valor,
-            this.quantidade});
+            this.carro_produto,
+            this.carro_valor,
+            this.carro_quantidade});
             this.dataGrid_carrinho.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGrid_carrinho.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dataGrid_carrinho.Location = new System.Drawing.Point(0, 20);
             this.dataGrid_carrinho.Name = "dataGrid_carrinho";
             this.dataGrid_carrinho.Size = new System.Drawing.Size(263, 473);
             this.dataGrid_carrinho.TabIndex = 3;
-            // 
-            // produto
-            // 
-            this.produto.HeaderText = "Produto";
-            this.produto.Name = "produto";
-            this.produto.Width = 69;
-            // 
-            // valor
-            // 
-            this.valor.HeaderText = "Valor";
-            this.valor.Name = "valor";
-            this.valor.Width = 56;
-            // 
-            // quantidade
-            // 
-            this.quantidade.HeaderText = "Quantiadade";
-            this.quantidade.Name = "quantidade";
-            this.quantidade.Width = 93;
             // 
             // pan_cod_produto
             // 
@@ -1638,6 +1580,45 @@
             this.btn_novaCompra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_novaCompra.UseVisualStyleBackColor = true;
             // 
+            // carro_produto
+            // 
+            this.carro_produto.HeaderText = "Produto";
+            this.carro_produto.Name = "carro_produto";
+            this.carro_produto.Width = 69;
+            // 
+            // carro_valor
+            // 
+            this.carro_valor.HeaderText = "Valor";
+            this.carro_valor.Name = "carro_valor";
+            this.carro_valor.Width = 56;
+            // 
+            // carro_quantidade
+            // 
+            this.carro_quantidade.HeaderText = "Quantiadade";
+            this.carro_quantidade.Name = "carro_quantidade";
+            this.carro_quantidade.Width = 93;
+            // 
+            // nomeReferencia
+            // 
+            this.nomeReferencia.DataPropertyName = "nomeReferencia";
+            this.nomeReferencia.HeaderText = "Nome";
+            this.nomeReferencia.Name = "nomeReferencia";
+            this.nomeReferencia.ReadOnly = true;
+            // 
+            // quantidade
+            // 
+            this.quantidade.DataPropertyName = "quantidade";
+            this.quantidade.HeaderText = "Quantidade";
+            this.quantidade.Name = "quantidade";
+            this.quantidade.ReadOnly = true;
+            // 
+            // preco
+            // 
+            this.preco.DataPropertyName = "preco";
+            this.preco.HeaderText = "Valor";
+            this.preco.Name = "preco";
+            this.preco.ReadOnly = true;
+            // 
             // form_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1667,7 +1648,7 @@
             this.pan_barraInfo.ResumeLayout(false);
             this.pan_esquerda.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_produtos)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -1788,11 +1769,10 @@
         public System.Windows.Forms.Button btn_reset;
         private System.Windows.Forms.Panel pan_esquerda;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGrid_produtos;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tx_buscaProduto;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
@@ -1805,10 +1785,6 @@
         private System.Windows.Forms.ComboBox cBox_Desconto;
         private System.Windows.Forms.Button btn_aplicaDesconto;
         private System.Windows.Forms.Button btn_pagar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nome_produto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantia_estoque;
-        private System.Windows.Forms.DataGridViewTextBoxColumn valor_produto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn desconto_produto;
         private System.Windows.Forms.Button btn_remover;
         private System.Windows.Forms.NumericUpDown num_itens;
         private System.Windows.Forms.Label lb_quantidade;
@@ -1816,9 +1792,6 @@
         private System.Windows.Forms.Label lb_codigo;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.DataGridView dataGrid_carrinho;
-        private System.Windows.Forms.DataGridViewTextBoxColumn produto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn valor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantidade;
         private System.Windows.Forms.ComboBox cBox_modoBuscaProduto;
         private System.Windows.Forms.Panel panel_funcaos;
         private System.Windows.Forms.Panel panel_botoes;
@@ -1851,6 +1824,12 @@
         private System.Windows.Forms.Label lb_ValueNomeCliente;
         private System.Windows.Forms.Label lb_ValueDesconto;
         private System.Windows.Forms.Label lb_desconto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomeReferencia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantidade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn preco;
+        private System.Windows.Forms.DataGridViewTextBoxColumn carro_produto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn carro_valor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn carro_quantidade;
     }
 }
 

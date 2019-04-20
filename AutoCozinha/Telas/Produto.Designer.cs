@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Produto));
             this.panel_esquerda = new System.Windows.Forms.Panel();
             this.tx_valor = new System.Windows.Forms.NumericUpDown();
             this.lb_valor = new System.Windows.Forms.Label();
@@ -50,20 +49,19 @@
             this.lb_nome = new System.Windows.Forms.Label();
             this.lb_titulo = new System.Windows.Forms.Label();
             this.panel_top = new System.Windows.Forms.Panel();
-            this.lb_buscaValidade = new System.Windows.Forms.Label();
-            this.cBox_validade = new System.Windows.Forms.ComboBox();
             this.cheBox_emFalta = new System.Windows.Forms.CheckBox();
-            this.btn_buscarProduto = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tx_busca = new System.Windows.Forms.TextBox();
             this.cBox_busca = new System.Windows.Forms.ComboBox();
             this.dataGrid_produtos = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumLote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeReferencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.validade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_editar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.lb_instrucao = new System.Windows.Forms.Label();
             this.panel_esquerda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tx_valor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.text_quantidade)).BeginInit();
@@ -205,6 +203,7 @@
             this.btn_limpa.TabIndex = 5;
             this.btn_limpa.Text = "LIMPAR";
             this.btn_limpa.UseVisualStyleBackColor = false;
+            this.btn_limpa.Click += new System.EventHandler(this.btn_limpa_Click);
             // 
             // btn_excluir
             // 
@@ -218,6 +217,7 @@
             this.btn_excluir.TabIndex = 4;
             this.btn_excluir.Text = "EXCLUIR";
             this.btn_excluir.UseVisualStyleBackColor = false;
+            this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
             // 
             // btn_salvar
             // 
@@ -299,11 +299,9 @@
             // 
             // panel_top
             // 
-            this.panel_top.Controls.Add(this.lb_buscaValidade);
-            this.panel_top.Controls.Add(this.cBox_validade);
+            this.panel_top.Controls.Add(this.lb_instrucao);
             this.panel_top.Controls.Add(this.cheBox_emFalta);
-            this.panel_top.Controls.Add(this.btn_buscarProduto);
-            this.panel_top.Controls.Add(this.textBox1);
+            this.panel_top.Controls.Add(this.tx_busca);
             this.panel_top.Controls.Add(this.cBox_busca);
             this.panel_top.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_top.Location = new System.Drawing.Point(200, 0);
@@ -311,50 +309,24 @@
             this.panel_top.Size = new System.Drawing.Size(725, 55);
             this.panel_top.TabIndex = 1;
             // 
-            // lb_buscaValidade
-            // 
-            this.lb_buscaValidade.AutoSize = true;
-            this.lb_buscaValidade.Location = new System.Drawing.Point(520, 3);
-            this.lb_buscaValidade.Name = "lb_buscaValidade";
-            this.lb_buscaValidade.Size = new System.Drawing.Size(51, 13);
-            this.lb_buscaValidade.TabIndex = 5;
-            this.lb_buscaValidade.Text = "Validade:";
-            // 
-            // cBox_validade
-            // 
-            this.cBox_validade.FormattingEnabled = true;
-            this.cBox_validade.Location = new System.Drawing.Point(490, 19);
-            this.cBox_validade.Name = "cBox_validade";
-            this.cBox_validade.Size = new System.Drawing.Size(121, 21);
-            this.cBox_validade.TabIndex = 4;
-            // 
             // cheBox_emFalta
             // 
             this.cheBox_emFalta.AutoSize = true;
-            this.cheBox_emFalta.Location = new System.Drawing.Point(420, 15);
+            this.cheBox_emFalta.Location = new System.Drawing.Point(430, 17);
             this.cheBox_emFalta.Name = "cheBox_emFalta";
             this.cheBox_emFalta.Size = new System.Drawing.Size(64, 17);
             this.cheBox_emFalta.TabIndex = 3;
             this.cheBox_emFalta.Text = "Em falta";
             this.cheBox_emFalta.UseVisualStyleBackColor = true;
+            this.cheBox_emFalta.CheckedChanged += new System.EventHandler(this.cheBox_emFalta_CheckedChanged);
             // 
-            // btn_buscarProduto
+            // tx_busca
             // 
-            this.btn_buscarProduto.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscarProduto.Image")));
-            this.btn_buscarProduto.Location = new System.Drawing.Point(617, 5);
-            this.btn_buscarProduto.Name = "btn_buscarProduto";
-            this.btn_buscarProduto.Size = new System.Drawing.Size(96, 37);
-            this.btn_buscarProduto.TabIndex = 2;
-            this.btn_buscarProduto.Text = "Buscar";
-            this.btn_buscarProduto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_buscarProduto.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(144, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(270, 20);
-            this.textBox1.TabIndex = 1;
+            this.tx_busca.Location = new System.Drawing.Point(119, 14);
+            this.tx_busca.Name = "tx_busca";
+            this.tx_busca.Size = new System.Drawing.Size(305, 20);
+            this.tx_busca.TabIndex = 1;
+            this.tx_busca.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tx_busca_KeyUp);
             // 
             // cBox_busca
             // 
@@ -362,7 +334,7 @@
             this.cBox_busca.FormattingEnabled = true;
             this.cBox_busca.Location = new System.Drawing.Point(7, 13);
             this.cBox_busca.Name = "cBox_busca";
-            this.cBox_busca.Size = new System.Drawing.Size(131, 21);
+            this.cBox_busca.Size = new System.Drawing.Size(106, 21);
             this.cBox_busca.TabIndex = 0;
             // 
             // dataGrid_produtos
@@ -373,12 +345,13 @@
             this.dataGrid_produtos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_produtos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
+            this.NumLote,
+            this.descricao,
             this.codigo,
             this.nomeReferencia,
             this.preco,
             this.quantidade,
-            this.validade,
-            this.btn_editar});
+            this.validade});
             this.dataGrid_produtos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGrid_produtos.Location = new System.Drawing.Point(200, 55);
             this.dataGrid_produtos.Name = "dataGrid_produtos";
@@ -394,6 +367,20 @@
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
             this.ID.Visible = false;
+            // 
+            // NumLote
+            // 
+            this.NumLote.DataPropertyName = "NumLote";
+            this.NumLote.HeaderText = "numLote";
+            this.NumLote.Name = "NumLote";
+            this.NumLote.Visible = false;
+            // 
+            // descricao
+            // 
+            this.descricao.DataPropertyName = "descricao";
+            this.descricao.HeaderText = "descricao";
+            this.descricao.Name = "descricao";
+            this.descricao.Visible = false;
             // 
             // codigo
             // 
@@ -430,12 +417,16 @@
             this.validade.Name = "validade";
             this.validade.ReadOnly = true;
             // 
-            // btn_editar
+            // lb_instrucao
             // 
-            this.btn_editar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_editar.HeaderText = "Editar";
-            this.btn_editar.Name = "btn_editar";
-            this.btn_editar.Text = "Editar";
+            this.lb_instrucao.AutoSize = true;
+            this.lb_instrucao.Location = new System.Drawing.Point(487, 17);
+            this.lb_instrucao.Name = "lb_instrucao";
+            this.lb_instrucao.Size = new System.Drawing.Size(235, 26);
+            this.lb_instrucao.TabIndex = 4;
+            this.lb_instrucao.Text = "Escreva o codigo ou nome do produto\r\nClique em um item para selecionar para a edi" +
+    "ção";
+            this.lb_instrucao.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Produto
             // 
@@ -487,20 +478,19 @@
         private System.Windows.Forms.RichTextBox text_descricao;
         private System.Windows.Forms.Panel panel_top;
         private System.Windows.Forms.ComboBox cBox_busca;
-        private System.Windows.Forms.Button btn_buscarProduto;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label lb_buscaValidade;
-        private System.Windows.Forms.ComboBox cBox_validade;
+        private System.Windows.Forms.TextBox tx_busca;
         private System.Windows.Forms.CheckBox cheBox_emFalta;
         private System.Windows.Forms.DataGridView dataGrid_produtos;
         private System.Windows.Forms.NumericUpDown tx_valor;
         private System.Windows.Forms.Label lb_valor;
+        private System.Windows.Forms.Label lb_instrucao;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumLote;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeReferencia;
         private System.Windows.Forms.DataGridViewTextBoxColumn preco;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn validade;
-        private System.Windows.Forms.DataGridViewButtonColumn btn_editar;
     }
 }

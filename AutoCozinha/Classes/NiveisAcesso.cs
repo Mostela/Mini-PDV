@@ -21,7 +21,7 @@ namespace AutoCozinha.Classes
             this.cargo = nomeNivel;
         }
 
-        public List<NiveisAcesso> Mostra()
+        public static List<NiveisAcesso> Mostra()
         {
             List<NiveisAcesso> niveis = new List<NiveisAcesso>();
 

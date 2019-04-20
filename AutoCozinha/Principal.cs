@@ -147,10 +147,29 @@ namespace AutoCozinha
         {
             this.CarregaFundo();
 
-            Classes.ConsultaRapida consulta = new Classes.ConsultaRapida();
-            cBox_modoBuscaProduto.DisplayMember = "metodo";
-            cBox_modoBuscaProduto.ValueMember = "ID";
-            cBox_modoBuscaProduto.DataSource = consulta.Listar();
+            cBox_modoBuscaProduto.ValueMember = "id";
+            cBox_modoBuscaProduto.DisplayMember = "modelo";
+            cBox_modoBuscaProduto.DataSource = Classes.BuscaProdutos.Listar();
+            dataGrid_produtos.AutoGenerateColumns = false;
+        }
+
+        private void tx_buscaProduto_KeyUp(object sender, KeyEventArgs e)
+        {
+            Classes.Estoque estoque = new Classes.Estoque();
+            switch (cBox_modoBuscaProduto.SelectedValue)
+            {
+                case 1:
+                    dataGrid_produtos.DataSource = estoque.BuscaProdutosEstoque(nome: tx_buscaProduto.Text);
+                    break;
+
+                case 2:
+                    dataGrid_produtos.DataSource = estoque.BuscaProdutosEstoque(codigo: tx_buscaProduto.Text);
+                    break;
+
+                default:
+                    dataGrid_produtos.DataSource = null;
+                    break;
+            }
         }
     }
 }

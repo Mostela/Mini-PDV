@@ -19,10 +19,14 @@ namespace AutoCozinha.Telas
 
         private void btn_acessar_Click(object sender, EventArgs e)
         {
+            //Classes.Usuario novoUser = new Classes.Usuario("João Carlos","jc@hotmail.com","39721234");
+            //novoUser.Cadastrar();
+
             Classes.Usuario usuario = new Classes.Usuario();
             Classes.Usuario.login = usuario.VerificaAcesso(tx_email.Text, tx_senha.Text);
             if (Classes.Usuario.login)
             {
+                Classes.Log.GravarLog(null, null, "Realizou login");
                 this.Close();
             }
             else

@@ -64,12 +64,10 @@ namespace AutoCozinha.Telas
             }
             else
             {
-                Classes.NiveisAcesso niveis = new Classes.NiveisAcesso();
-
                 cBox_nivel.DisplayMember = "cargo";
                 cBox_nivel.ValueMember = "nivel";
 
-                cBox_nivel.DataSource = niveis.Mostra();
+                cBox_nivel.DataSource = Classes.NiveisAcesso.Mostra();
             }
         }
 

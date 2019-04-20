@@ -11,7 +11,7 @@ namespace AutoCozinha.Classes
     {
         [BsonId]
         public int ID { set; get; }
-        public double preco { set; get; }
+        public float preco { set; get; }
         public string validade { set; get; }
         public string nomeReferencia { set; get; }
         public string descricao { set; get; }
@@ -30,7 +30,7 @@ namespace AutoCozinha.Classes
         /// <param name="nome"></param>
         /// <param name="codigo"></param>
         /// <param name="ID"></param>
-        public Produto(double preco, string lote, string validade, string nome, string codigo,string descricao,int quantidade, int ID = 0)
+        public Produto(float preco, string lote, string validade, string nome, string codigo,string descricao,int quantidade, int ID = 0)
         {
             this.ID = ID;
             this.preco = preco;
@@ -55,54 +55,52 @@ namespace AutoCozinha.Classes
                 }
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Classes.Log.GravarLog(string.Format("Erro cadastrar produto {0}", ex.Message));
                 return false;
             }
         }
         /// <summary>
-        /// ATUALIZA TODO O OBJETO
+        /// Atualiza todo o objeto
         /// </summary>
-        public void Editar()
+        /// <returns></returns>
+        public bool Editar()
         {
-            using(var bd = new LiteDatabase(BaseDados.local))
+            try
             {
-                bd.GetCollection<Produto>().Update(this);
+                using (var bd = new LiteDatabase(BaseDados.local))
+                {
+                    bd.GetCollection<Produto>().Update(this);
+                }
+                return true;
             }
-        }
-
-        /// <summary>
-        /// ATUALIZA TODO O OBJETO. Quantiade por parametro
-        /// </summary>
-        public void Editar(int quantidade)
-        {
-            this.quantidade = quantidade;
-            using (var bd = new LiteDatabase(BaseDados.local))
+            catch (Exception ex)
             {
-                bd.GetCollection<Produto>().Update(this);
+                Classes.Log.GravarLog(string.Format("Erro editar produto {0}", ex.Message));
+                return false;
             }
+            
         }
         /// <summary>
         /// EXCLUI O PRODUTO PELO ATRIBUTO ID
         /// </summary>
-        public void Excluir()
+        public bool Excluir()
         {
-            using(var bd = new LiteDatabase(BaseDados.local))
+            try
             {
-                bd.GetCollection<Produto>().Delete(this.ID);
+                using (var bd = new LiteDatabase(BaseDados.local))
+                {
+                    bd.GetCollection<Produto>().Delete(this.ID);
+                }
+                return true;
             }
-        }
-
-        /// <summary>
-        /// EXCLUIR PELO PARAMENTRO ID
-        /// </summary>
-        /// <param name="ID"></param>
-        public void Excluir(int ID)
-        {
-            using (var bd = new LiteDatabase(BaseDados.local))
+            catch (Exception ex)
             {
-                bd.GetCollection<Produto>().Delete(ID);
+                Classes.Log.GravarLog(string.Format("Erro excluir produto {0}",ex.Message), this.nomeReferencia);
+                return false;
             }
+            
         }
 
         public List<Produto> BuscaProduto(string nome)

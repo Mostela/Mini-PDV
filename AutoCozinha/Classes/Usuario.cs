@@ -45,10 +45,12 @@ namespace AutoCozinha.Classes
         /// </summary>
         public void Cadastrar()
         {
+            this.senha = this.GeraHasMD5(this.senha);
             using (var db = new LiteDatabase(BaseDados.local))
             {
                 db.GetCollection<Classes.Usuario>().Insert(this);
             }
+            Log.GravarLog("Novo usuario", novo: this.email);
         }
         /// <summary>
         /// Busca o usuario no banco de dados e retorna valor booleano

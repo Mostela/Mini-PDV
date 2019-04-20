@@ -51,8 +51,9 @@
   <ItemGroup>
     <Compile Include="Classes\AlterarFundo.cs" />
     <Compile Include="Classes\BaseDados.cs" />
-    <Compile Include="Classes\ConsultaRapida.cs" />
+    <Compile Include="Classes\BuscaProdutos.cs" />
     <Compile Include="Classes\Estoque.cs" />
+    <Compile Include="Classes\Log.cs" />
     <Compile Include="Classes\NiveisAcesso.cs" />
     <Compile Include="Classes\Produto.cs" />
     <Compile Include="Classes\Usuario.cs" />
