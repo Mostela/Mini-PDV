@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace AutoCozinha.Classes
+namespace Classes
 {
     class Log
     {

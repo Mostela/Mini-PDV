@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LiteDB;
 
-namespace AutoCozinha.Classes
+namespace Classes
 {
     class Estoque
     {
@@ -44,7 +44,7 @@ namespace AutoCozinha.Classes
             /// RETORNA LISTA COM TODOS OS PRODUTOS EM QUANTIDADE NEGATIVA
             /// </summary>
             /// <returns></returns>
-            public List<Produto> ProdutosEmFalta()
+        public List<Produto> ProdutosEmFalta()
         {
             List<Produto> produtos = new List<Produto>();
             using (var db = new LiteDatabase(BaseDados.local))

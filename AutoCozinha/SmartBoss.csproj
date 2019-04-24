@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FA0DFD8A-FF53-4CB3-AFFB-72A9F8CF80A3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>AutoCozinha</RootNamespace>
-    <AssemblyName>AutoCozinha</AssemblyName>
+    <RootNamespace>SmartBoss</RootNamespace>
+    <AssemblyName>SmartBoss</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -52,7 +52,10 @@
     <Compile Include="Classes\AlterarFundo.cs" />
     <Compile Include="Classes\BaseDados.cs" />
     <Compile Include="Classes\BuscaProdutos.cs" />
+    <Compile Include="Classes\Cliente.cs" />
+    <Compile Include="Classes\Debito.cs" />
     <Compile Include="Classes\Estoque.cs" />
+    <Compile Include="Classes\Fidelidade.cs" />
     <Compile Include="Classes\Log.cs" />
     <Compile Include="Classes\NiveisAcesso.cs" />
     <Compile Include="Classes\Produto.cs" />
