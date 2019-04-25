@@ -10,7 +10,7 @@ namespace Classes
 {
     class Cliente
     {
-        private int id { get; set; }
+        public int id { get; set; }
         private string nome { get; set; }
         private string email { get; set; }
         private string cpf { get; set; }
@@ -61,6 +61,7 @@ namespace Classes
                 {
                     db.GetCollection<Cliente>().Insert(this);
                 }
+                Log.GravarLog("Foi criado um novo cliene", novo: this.id.ToString());
                 return true;
             }
             catch (Exception)
@@ -93,6 +94,7 @@ namespace Classes
                 using(var db = new LiteDatabase(BaseDados.local))
                 {
                     db.GetCollection<Cliente>().Update(this);
+                    Log.GravarLog("Cliente atualizado", antigo: this.id.ToString());
                 }
                 return true;
             }
@@ -118,15 +120,6 @@ namespace Classes
             {
                 LiteDatabase lite = new LiteDatabase(BaseDados.local);
                 bool limpo = false;
-                if (lite.GetCollection<Cliente>().Delete(this.id))
-                {
-                    limpo = true;
-                }
-
-                if (lite.GetCollection<Fidelidade>().Delete(this.id))
-                {
-                    limpo = true;
-                }
 
                 var emDebito = lite.GetCollection<Debito>().FindById(this.id);
                 if(emDebito.nome != null)
@@ -135,6 +128,21 @@ namespace Classes
                     {
                         limpo = true;
                     }
+
+                    if (lite.GetCollection<Cliente>().Delete(this.id))
+                    {
+                        limpo = true;
+                    }
+
+                    if (lite.GetCollection<Fidelidade>().Delete(this.id))
+                    {
+                        limpo = true;
+                    }
+                    Log.GravarLog("Cliente foi eliminado do sistema", antigo: this.id.ToString());
+                }
+                else
+                {
+                    Log.GravarLog("Erro eliminar cliente do sistema", antigo: this.id.ToString());
                 }
                 
                 return limpo;

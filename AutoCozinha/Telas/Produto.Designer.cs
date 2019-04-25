@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panel_esquerda = new System.Windows.Forms.Panel();
+            this.cBox_categoria = new System.Windows.Forms.ComboBox();
             this.tx_valor = new System.Windows.Forms.NumericUpDown();
             this.lb_valor = new System.Windows.Forms.Label();
             this.date_validade = new System.Windows.Forms.DateTimePicker();
             this.text_quantidade = new System.Windows.Forms.NumericUpDown();
-            this.text_lote = new System.Windows.Forms.TextBox();
             this.text_codigo = new System.Windows.Forms.TextBox();
             this.text_descricao = new System.Windows.Forms.RichTextBox();
             this.tx_nomeProduto = new System.Windows.Forms.TextBox();
@@ -42,26 +42,26 @@
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_salvar = new System.Windows.Forms.Button();
             this.lb_validade = new System.Windows.Forms.Label();
-            this.lb_lote = new System.Windows.Forms.Label();
+            this.lb_categoria = new System.Windows.Forms.Label();
             this.lb_quantidade = new System.Windows.Forms.Label();
             this.lb_codigo = new System.Windows.Forms.Label();
             this.lb_descricao = new System.Windows.Forms.Label();
             this.lb_nome = new System.Windows.Forms.Label();
             this.lb_titulo = new System.Windows.Forms.Label();
             this.panel_top = new System.Windows.Forms.Panel();
+            this.lb_instrucao = new System.Windows.Forms.Label();
             this.cheBox_emFalta = new System.Windows.Forms.CheckBox();
             this.tx_busca = new System.Windows.Forms.TextBox();
             this.cBox_busca = new System.Windows.Forms.ComboBox();
             this.dataGrid_produtos = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumLote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeReferencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.validade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lb_instrucao = new System.Windows.Forms.Label();
             this.panel_esquerda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tx_valor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.text_quantidade)).BeginInit();
@@ -72,17 +72,17 @@
             // 
             // panel_esquerda
             // 
+            this.panel_esquerda.Controls.Add(this.cBox_categoria);
             this.panel_esquerda.Controls.Add(this.tx_valor);
             this.panel_esquerda.Controls.Add(this.lb_valor);
             this.panel_esquerda.Controls.Add(this.date_validade);
             this.panel_esquerda.Controls.Add(this.text_quantidade);
-            this.panel_esquerda.Controls.Add(this.text_lote);
             this.panel_esquerda.Controls.Add(this.text_codigo);
             this.panel_esquerda.Controls.Add(this.text_descricao);
             this.panel_esquerda.Controls.Add(this.tx_nomeProduto);
             this.panel_esquerda.Controls.Add(this.panel_btns_esquerda);
             this.panel_esquerda.Controls.Add(this.lb_validade);
-            this.panel_esquerda.Controls.Add(this.lb_lote);
+            this.panel_esquerda.Controls.Add(this.lb_categoria);
             this.panel_esquerda.Controls.Add(this.lb_quantidade);
             this.panel_esquerda.Controls.Add(this.lb_codigo);
             this.panel_esquerda.Controls.Add(this.lb_descricao);
@@ -93,6 +93,14 @@
             this.panel_esquerda.Name = "panel_esquerda";
             this.panel_esquerda.Size = new System.Drawing.Size(200, 493);
             this.panel_esquerda.TabIndex = 0;
+            // 
+            // cBox_categoria
+            // 
+            this.cBox_categoria.FormattingEnabled = true;
+            this.cBox_categoria.Location = new System.Drawing.Point(73, 257);
+            this.cBox_categoria.Name = "cBox_categoria";
+            this.cBox_categoria.Size = new System.Drawing.Size(121, 21);
+            this.cBox_categoria.TabIndex = 16;
             // 
             // tx_valor
             // 
@@ -151,13 +159,6 @@
             0,
             0,
             0});
-            // 
-            // text_lote
-            // 
-            this.text_lote.Location = new System.Drawing.Point(77, 260);
-            this.text_lote.Name = "text_lote";
-            this.text_lote.Size = new System.Drawing.Size(107, 20);
-            this.text_lote.TabIndex = 11;
             // 
             // text_codigo
             // 
@@ -242,14 +243,14 @@
             this.lb_validade.TabIndex = 6;
             this.lb_validade.Text = "Validade:";
             // 
-            // lb_lote
+            // lb_categoria
             // 
-            this.lb_lote.AutoSize = true;
-            this.lb_lote.Location = new System.Drawing.Point(39, 260);
-            this.lb_lote.Name = "lb_lote";
-            this.lb_lote.Size = new System.Drawing.Size(31, 13);
-            this.lb_lote.TabIndex = 5;
-            this.lb_lote.Text = "Lote:";
+            this.lb_categoria.AutoSize = true;
+            this.lb_categoria.Location = new System.Drawing.Point(20, 260);
+            this.lb_categoria.Name = "lb_categoria";
+            this.lb_categoria.Size = new System.Drawing.Size(55, 13);
+            this.lb_categoria.TabIndex = 5;
+            this.lb_categoria.Text = "Categoria:";
             // 
             // lb_quantidade
             // 
@@ -309,6 +310,17 @@
             this.panel_top.Size = new System.Drawing.Size(725, 55);
             this.panel_top.TabIndex = 1;
             // 
+            // lb_instrucao
+            // 
+            this.lb_instrucao.AutoSize = true;
+            this.lb_instrucao.Location = new System.Drawing.Point(487, 17);
+            this.lb_instrucao.Name = "lb_instrucao";
+            this.lb_instrucao.Size = new System.Drawing.Size(235, 26);
+            this.lb_instrucao.TabIndex = 4;
+            this.lb_instrucao.Text = "Escreva o codigo ou nome do produto\r\nClique em um item para selecionar para a edi" +
+    "ção";
+            this.lb_instrucao.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // cheBox_emFalta
             // 
             this.cheBox_emFalta.AutoSize = true;
@@ -345,7 +357,7 @@
             this.dataGrid_produtos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_produtos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
-            this.NumLote,
+            this.categoria,
             this.descricao,
             this.codigo,
             this.nomeReferencia,
@@ -368,12 +380,12 @@
             this.ID.ReadOnly = true;
             this.ID.Visible = false;
             // 
-            // NumLote
+            // categoria
             // 
-            this.NumLote.DataPropertyName = "NumLote";
-            this.NumLote.HeaderText = "numLote";
-            this.NumLote.Name = "NumLote";
-            this.NumLote.Visible = false;
+            this.categoria.DataPropertyName = "categoria";
+            this.categoria.HeaderText = "numLote";
+            this.categoria.Name = "categoria";
+            this.categoria.Visible = false;
             // 
             // descricao
             // 
@@ -417,17 +429,6 @@
             this.validade.Name = "validade";
             this.validade.ReadOnly = true;
             // 
-            // lb_instrucao
-            // 
-            this.lb_instrucao.AutoSize = true;
-            this.lb_instrucao.Location = new System.Drawing.Point(487, 17);
-            this.lb_instrucao.Name = "lb_instrucao";
-            this.lb_instrucao.Size = new System.Drawing.Size(235, 26);
-            this.lb_instrucao.TabIndex = 4;
-            this.lb_instrucao.Text = "Escreva o codigo ou nome do produto\r\nClique em um item para selecionar para a edi" +
-    "ção";
-            this.lb_instrucao.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // Produto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -464,7 +465,6 @@
         private System.Windows.Forms.Label lb_descricao;
         private System.Windows.Forms.Label lb_nome;
         private System.Windows.Forms.Label lb_validade;
-        private System.Windows.Forms.Label lb_lote;
         private System.Windows.Forms.Label lb_quantidade;
         private System.Windows.Forms.Panel panel_btns_esquerda;
         private System.Windows.Forms.Button btn_limpa;
@@ -473,7 +473,6 @@
         private System.Windows.Forms.TextBox tx_nomeProduto;
         private System.Windows.Forms.DateTimePicker date_validade;
         private System.Windows.Forms.NumericUpDown text_quantidade;
-        private System.Windows.Forms.TextBox text_lote;
         private System.Windows.Forms.TextBox text_codigo;
         private System.Windows.Forms.RichTextBox text_descricao;
         private System.Windows.Forms.Panel panel_top;
@@ -484,8 +483,10 @@
         private System.Windows.Forms.NumericUpDown tx_valor;
         private System.Windows.Forms.Label lb_valor;
         private System.Windows.Forms.Label lb_instrucao;
+        private System.Windows.Forms.Label lb_categoria;
+        private System.Windows.Forms.ComboBox cBox_categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NumLote;
+        private System.Windows.Forms.DataGridViewTextBoxColumn categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn descricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeReferencia;

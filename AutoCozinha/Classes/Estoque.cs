@@ -9,8 +9,9 @@ namespace Classes
 {
     class Estoque
     {
-        public string NumLote { set; get; }
+        
         public int quantidade { set; get; }
+        public int categoria { set; get; }
         /// <summary>
         /// Busca e retorna em lista todos os produtos no estoque
         /// </summary>
@@ -40,6 +41,12 @@ namespace Classes
             List<Produto> produtos = this.BuscaProdutosEstoque();
             return produtos.Where(x => x.codigo.Contains(codigo)).ToList();
         }
+
+        public List<Produto> BuscaProdutosEstoque(int id_categoria, string codigo= null, string nome = null)
+        {
+            List<Produto> produtos = this.BuscaProdutosEstoque();
+            return produtos.Where(x => x.categoria == id_categoria).ToList();
+        }
             /// <summary>
             /// RETORNA LISTA COM TODOS OS PRODUTOS EM QUANTIDADE NEGATIVA
             /// </summary>
@@ -52,6 +59,12 @@ namespace Classes
                 produtos = db.GetCollection<Produto>().FindAll().Where(x => x.quantidade <= 0).ToList();
             }
             return produtos;
+        }
+
+        //PARA ESCREVER EM BREVE
+        public static bool CodigosUsados()
+        {
+            return true;
         }
     }
 }

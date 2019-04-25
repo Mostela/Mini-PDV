@@ -20,12 +20,12 @@ namespace AutoCozinha.Telas
 
         private void btn_salvar_Click(object sender, EventArgs e)
         {
-            if(text_codigo.Text != null && text_lote.Text != null && tx_nomeProduto.Text != null && text_quantidade.Value > 0)
+            if(text_codigo.Text != null && tx_nomeProduto.Text != null && text_quantidade.Value > 0)
             {
-
+                var CatSelect = Classes.CategoriaProduto.RetornaCategoria(int.Parse(cBox_categoria.SelectedValue.ToString()));
                 if (this.produto.ID != 0)
                 {
-                    Classes.Produto produtoEdita = new Classes.Produto(float.Parse(tx_valor.Value.ToString()), text_lote.Text, date_validade.Text, tx_nomeProduto.Text, text_codigo.Text, text_descricao.Text, int.Parse(text_quantidade.Value.ToString()),produto.ID);
+                    Classes.Produto produtoEdita = new Classes.Produto(float.Parse(tx_valor.Value.ToString()), CatSelect, date_validade.Text, tx_nomeProduto.Text, text_codigo.Text, text_descricao.Text, int.Parse(text_quantidade.Value.ToString()),produto.ID);
                     if (MessageBox.Show(string.Format("Deseja editar o produto {0}!", produto.nomeReferencia),"Editar",MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         if (produtoEdita.Editar()){
@@ -37,7 +37,7 @@ namespace AutoCozinha.Telas
                 else
                 {
                     //SE O PRODUTO NÃO HOUVER SIDO APONTADO CRIA UM NOVO
-                    Classes.Produto produtoNovo = new Classes.Produto(float.Parse(tx_valor.Value.ToString()), text_lote.Text, date_validade.Text, tx_nomeProduto.Text, text_codigo.Text, text_descricao.Text, int.Parse(text_quantidade.Value.ToString()));
+                    Classes.Produto produtoNovo = new Classes.Produto(float.Parse(tx_valor.Value.ToString()), CatSelect, date_validade.Text, tx_nomeProduto.Text, text_codigo.Text, text_descricao.Text, int.Parse(text_quantidade.Value.ToString()));
                     if (produtoNovo.Cadastra())
                     {
                         MessageBox.Show("O produto foi adicionado!");
@@ -69,6 +69,13 @@ namespace AutoCozinha.Telas
             cBox_busca.ValueMember = "id";
             cBox_busca.DisplayMember = "modelo";
             cBox_busca.DataSource = Classes.BuscaProdutos.Listar();
+
+            //Classes.CategoriaProduto categoriaProduto = new Classes.CategoriaProduto(2,"Congelados");
+            //categoriaProduto.NovaCategoria();
+
+            cBox_categoria.ValueMember = "id_categoria";
+            cBox_categoria.DisplayMember = "categoria";
+            cBox_categoria.DataSource = Classes.CategoriaProduto.Listar();
         }
 
         private void dataGrid_produtos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -79,7 +86,7 @@ namespace AutoCozinha.Telas
             //OBTEM O VALOR DA LINHA E ATRIBUI A CLASSE
             produto.ID = int.Parse(dataGrid_produtos.Rows[indice].Cells["ID"].Value.ToString());
                 //ATRIBUI ID A OBJETO APENAS
-            produto.NumLote = dataGrid_produtos.Rows[indice].Cells["NumLote"].Value.ToString();
+            produto.categoria = int.Parse(dataGrid_produtos.Rows[indice].Cells["categoria"].Value.ToString());
             produto.codigo = dataGrid_produtos.Rows[indice].Cells["codigo"].Value.ToString();
             produto.descricao = dataGrid_produtos.Rows[indice].Cells["descricao"].Value.ToString();
             produto.nomeReferencia = dataGrid_produtos.Rows[indice].Cells["nomeReferencia"].Value.ToString();
@@ -88,8 +95,8 @@ namespace AutoCozinha.Telas
             produto.validade = dataGrid_produtos.Rows[indice].Cells["validade"].Value.ToString();
 
             //ATRIBUI A CLASSE AOS CAMPOS
+            cBox_categoria.SelectedValue = produto.categoria;
             tx_valor.Value = decimal.Parse(produto.preco.ToString());
-            text_lote.Text = produto.NumLote;
             date_validade.Text = produto.validade;
             tx_nomeProduto.Text = produto.nomeReferencia;
             text_codigo.Text = produto.codigo;
@@ -121,7 +128,6 @@ namespace AutoCozinha.Telas
         {
             produto.ID = 0;
             tx_valor.Value = 1;
-            text_lote.Text = null;
             /*DateTime date = new DateTime();
             date_validade.Text = date.Day + "/"+ date.Month+"/"+date.Year;*/
             tx_nomeProduto.Text = null;

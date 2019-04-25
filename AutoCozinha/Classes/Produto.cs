@@ -30,11 +30,11 @@ namespace Classes
         /// <param name="nome"></param>
         /// <param name="codigo"></param>
         /// <param name="ID"></param>
-        public Produto(float preco, string lote, string validade, string nome, string codigo,string descricao,int quantidade, int ID = 0)
+        public Produto(float preco,CategoriaProduto categoria, string validade, string nome, string codigo,string descricao,int quantidade, int ID = 0)
         {
             this.ID = ID;
             this.preco = preco;
-            this.NumLote = lote;
+            this.categoria = categoria.id_categoria;
             this.validade = validade;
             this.nomeReferencia = nome;
             this.codigo = codigo;
