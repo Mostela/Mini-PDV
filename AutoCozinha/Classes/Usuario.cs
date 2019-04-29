@@ -92,6 +92,16 @@ namespace Classes
 
             return sBuilder.ToString();
         }
+        /// <summary>
+        /// É criado um usuario padrão para acessar o sistema
+        /// </summary>
+        public static void GeraUserPadrao()
+        {
+            Usuario usPadrao = new Usuario("Default", "admin@admin", "1234578");
+            usPadrao.Cadastrar();
+            Log.GravarLog("Foi criado um usuario padrão", novo: usPadrao.email, antigo: "12345678");
+            
+        }
 
 
     }

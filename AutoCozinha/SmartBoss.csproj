@@ -52,11 +52,14 @@
     <Compile Include="Classes\AlterarFundo.cs" />
     <Compile Include="Classes\BaseDados.cs" />
     <Compile Include="Classes\BuscaProdutos.cs" />
+    <Compile Include="Classes\CarrinhoDeCompas.cs" />
     <Compile Include="Classes\CategoriaProduto.cs" />
     <Compile Include="Classes\Cliente.cs" />
+    <Compile Include="Classes\Compras.cs" />
     <Compile Include="Classes\Debito.cs" />
     <Compile Include="Classes\Estoque.cs" />
     <Compile Include="Classes\Fidelidade.cs" />
+    <Compile Include="Classes\ListaCidades.cs" />
     <Compile Include="Classes\Log.cs" />
     <Compile Include="Classes\NiveisAcesso.cs" />
     <Compile Include="Classes\Produto.cs" />
@@ -69,11 +72,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Telas\Cliente.cs">
+    <Compile Include="Telas\Tela_Cliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\Cliente.Designer.cs">
-      <DependentUpon>Cliente.cs</DependentUpon>
+    <Compile Include="Telas\Tela_Cliente.Designer.cs">
+      <DependentUpon>Tela_Cliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\login.cs">
       <SubType>Form</SubType>
@@ -112,8 +115,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Telas\Cliente.resx">
-      <DependentUpon>Cliente.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\Tela_Cliente.resx">
+      <DependentUpon>Tela_Cliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\login.resx">
       <DependentUpon>login.cs</DependentUpon>

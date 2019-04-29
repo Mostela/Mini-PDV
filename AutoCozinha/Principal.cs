@@ -90,7 +90,7 @@ namespace AutoCozinha
             {
                 if (Application.OpenForms["Cliente"] == null)
                 {
-                    Telas.Cliente cliente = new Telas.Cliente();
+                    Telas.TelaCliente cliente = new Telas.TelaCliente();
                     cliente.Show();
                 }
             }

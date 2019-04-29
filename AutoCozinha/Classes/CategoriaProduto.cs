@@ -20,7 +20,9 @@ namespace Classes
         {
                 
         }
-
+        /// <summary>
+        /// Classe usada para encher a ComboBox Categoria dos produtos
+        /// </summary>
         public CategoriaProduto(int ID, string categoria)
         {
             this.id_categoria = ID;
@@ -40,13 +42,16 @@ namespace Classes
 
             return lista;
         }
-
+        /// <summary>
+        /// Adiciona uma nova categoria na base de dados
+        /// </summary>
         public void NovaCategoria()
         {
             using(var db = new LiteDB.LiteDatabase(BaseDados.local))
             {
                 db.GetCollection<CategoriaProduto>().Insert(this);
             }
+            Log.GravarLog("Adicionado categoria de produto", novo: this.categoria);
         }
         /// <summary>
         /// Informa a ID da categoria a ser removida
@@ -61,6 +66,7 @@ namespace Classes
                 {
                     db.GetCollection<CategoriaProduto>().Delete(id);
                 }
+                Log.GravarLog("Retirado categoria de produto", antigo: id.ToString());
                 return true;
             }
             catch (Exception)
@@ -77,6 +83,17 @@ namespace Classes
         {
             LiteDB.LiteDatabase lite = new LiteDB.LiteDatabase(BaseDados.local);
             return lite.GetCollection<CategoriaProduto>().FindById(ID_busca);
+        }
+        /// <summary>
+        /// Adiciona as categorias padrão na base de dados
+        /// </summary>
+        public static void CategoriaPadrao()
+        {
+            CategoriaProduto cate = new CategoriaProduto(1, "Bebidas");
+            cate.NovaCategoria();
+            cate.id_categoria = 2;
+            cate.categoria = "Congelados";
+            cate.NovaCategoria();
         }
     }
 }

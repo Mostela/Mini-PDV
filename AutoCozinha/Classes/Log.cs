@@ -6,6 +6,7 @@ namespace Classes
 {
     class Log
     {
+        public static DateTime date = DateTime.Now;
         /// <summary>
         /// Grava o log com os dados informados
         /// </summary>
@@ -16,7 +17,7 @@ namespace Classes
         public static void GravarLog(string mensagem, string antigo =null, string novo = null)
         {
             int ID_user = Classes.NiveisAcesso.ID_Habilitado;
-            DateTime date = new DateTime();
+            
             string DateTime = date.Hour + "-" + date.Minute + "#" + date.Day + "/" + date.Month + "/" + date.Year;
             string mensagemGravar = ID_user + "$" + mensagem + ":" + antigo + " para " + novo + " em " + DateTime + "\r\n -----------------------\r\n";
 

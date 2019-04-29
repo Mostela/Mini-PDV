@@ -125,6 +125,9 @@
             this.pan_esquerda = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGrid_produtos = new System.Windows.Forms.DataGridView();
+            this.nomeReferencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cBox_modoBuscaProduto = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -137,6 +140,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pan_direita = new System.Windows.Forms.Panel();
             this.dataGrid_carrinho = new System.Windows.Forms.DataGridView();
+            this.carro_produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carro_valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carro_quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pan_cod_produto = new System.Windows.Forms.Panel();
             this.picBox_codebar = new System.Windows.Forms.PictureBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -175,12 +181,6 @@
             this.btn_emitirComprovante = new System.Windows.Forms.Button();
             this.btn_pagarCentro = new System.Windows.Forms.Button();
             this.btn_novaCompra = new System.Windows.Forms.Button();
-            this.carro_produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.carro_valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.carro_quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeReferencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barra_geral.SuspendLayout();
             this.menu_telaMain.SuspendLayout();
             this.pan_barraInfo.SuspendLayout();
@@ -1049,6 +1049,27 @@
             this.dataGrid_produtos.Size = new System.Drawing.Size(303, 255);
             this.dataGrid_produtos.TabIndex = 10;
             // 
+            // nomeReferencia
+            // 
+            this.nomeReferencia.DataPropertyName = "nomeReferencia";
+            this.nomeReferencia.HeaderText = "Nome";
+            this.nomeReferencia.Name = "nomeReferencia";
+            this.nomeReferencia.ReadOnly = true;
+            // 
+            // quantidade
+            // 
+            this.quantidade.DataPropertyName = "quantidade";
+            this.quantidade.HeaderText = "Quantidade";
+            this.quantidade.Name = "quantidade";
+            this.quantidade.ReadOnly = true;
+            // 
+            // preco
+            // 
+            this.preco.DataPropertyName = "preco";
+            this.preco.HeaderText = "Valor";
+            this.preco.Name = "preco";
+            this.preco.ReadOnly = true;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.cBox_modoBuscaProduto);
@@ -1175,6 +1196,24 @@
             this.dataGrid_carrinho.Name = "dataGrid_carrinho";
             this.dataGrid_carrinho.Size = new System.Drawing.Size(263, 473);
             this.dataGrid_carrinho.TabIndex = 3;
+            // 
+            // carro_produto
+            // 
+            this.carro_produto.HeaderText = "Produto";
+            this.carro_produto.Name = "carro_produto";
+            this.carro_produto.Width = 69;
+            // 
+            // carro_valor
+            // 
+            this.carro_valor.HeaderText = "Valor";
+            this.carro_valor.Name = "carro_valor";
+            this.carro_valor.Width = 56;
+            // 
+            // carro_quantidade
+            // 
+            this.carro_quantidade.HeaderText = "Quantiadade";
+            this.carro_quantidade.Name = "carro_quantidade";
+            this.carro_quantidade.Width = 93;
             // 
             // pan_cod_produto
             // 
@@ -1579,45 +1618,6 @@
             this.btn_novaCompra.Text = "Nova compra";
             this.btn_novaCompra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_novaCompra.UseVisualStyleBackColor = true;
-            // 
-            // carro_produto
-            // 
-            this.carro_produto.HeaderText = "Produto";
-            this.carro_produto.Name = "carro_produto";
-            this.carro_produto.Width = 69;
-            // 
-            // carro_valor
-            // 
-            this.carro_valor.HeaderText = "Valor";
-            this.carro_valor.Name = "carro_valor";
-            this.carro_valor.Width = 56;
-            // 
-            // carro_quantidade
-            // 
-            this.carro_quantidade.HeaderText = "Quantiadade";
-            this.carro_quantidade.Name = "carro_quantidade";
-            this.carro_quantidade.Width = 93;
-            // 
-            // nomeReferencia
-            // 
-            this.nomeReferencia.DataPropertyName = "nomeReferencia";
-            this.nomeReferencia.HeaderText = "Nome";
-            this.nomeReferencia.Name = "nomeReferencia";
-            this.nomeReferencia.ReadOnly = true;
-            // 
-            // quantidade
-            // 
-            this.quantidade.DataPropertyName = "quantidade";
-            this.quantidade.HeaderText = "Quantidade";
-            this.quantidade.Name = "quantidade";
-            this.quantidade.ReadOnly = true;
-            // 
-            // preco
-            // 
-            this.preco.DataPropertyName = "preco";
-            this.preco.HeaderText = "Valor";
-            this.preco.Name = "preco";
-            this.preco.ReadOnly = true;
             // 
             // form_principal
             // 

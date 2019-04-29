@@ -96,6 +96,7 @@
             // 
             // cBox_categoria
             // 
+            this.cBox_categoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBox_categoria.FormattingEnabled = true;
             this.cBox_categoria.Location = new System.Drawing.Point(73, 257);
             this.cBox_categoria.Name = "cBox_categoria";
@@ -166,6 +167,7 @@
             this.text_codigo.Name = "text_codigo";
             this.text_codigo.Size = new System.Drawing.Size(184, 20);
             this.text_codigo.TabIndex = 10;
+            this.text_codigo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.text_codigo_KeyUp);
             // 
             // text_descricao
             // 

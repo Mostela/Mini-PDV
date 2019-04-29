@@ -20,7 +20,7 @@ namespace AutoCozinha.Telas
 
         private void btn_salvar_Click(object sender, EventArgs e)
         {
-            if(text_codigo.Text != null && tx_nomeProduto.Text != null && text_quantidade.Value > 0)
+            if (text_codigo.Text != null && tx_nomeProduto.Text != null && text_quantidade.Value > 0 && text_codigo.BackColor == Color.Green)
             {
                 var CatSelect = Classes.CategoriaProduto.RetornaCategoria(int.Parse(cBox_categoria.SelectedValue.ToString()));
                 if (this.produto.ID != 0)
@@ -163,9 +163,20 @@ namespace AutoCozinha.Telas
                 case 2:
                     dataGrid_produtos.DataSource = produto.BuscaProdutosEstoque(codigo: tx_busca.Text);
                     break;
-
                 default:
                     break;
+            }
+        }
+
+        private void text_codigo_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (Classes.Estoque.CodigosUsados(text_codigo.Text))
+            {
+                text_codigo.BackColor = Color.Green;
+            }
+            else
+            {
+                text_codigo.BackColor = Color.Red;
             }
         }
     }

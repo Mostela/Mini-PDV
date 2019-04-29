@@ -1,6 +1,6 @@
 ﻿namespace AutoCozinha.Telas
 {
-    partial class Cliente
+    partial class TelaCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,13 @@
         private void InitializeComponent()
         {
             this.pnl_esquerda = new System.Windows.Forms.Panel();
+            this.lb_infoDesconto = new System.Windows.Forms.Label();
+            this.lb_desconto = new System.Windows.Forms.Label();
+            this.cheBox_fidelidade = new System.Windows.Forms.CheckBox();
             this.lb_infoStatus = new System.Windows.Forms.Label();
             this.lb_status = new System.Windows.Forms.Label();
             this.cBox_cidade = new System.Windows.Forms.ComboBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.txt_cpf = new System.Windows.Forms.MaskedTextBox();
             this.txt_email = new System.Windows.Forms.TextBox();
             this.txt_nome = new System.Windows.Forms.TextBox();
             this.panel_esq_botoes = new System.Windows.Forms.Panel();
@@ -40,6 +43,9 @@
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_salvar = new System.Windows.Forms.Button();
             this.panel_esq_baixo = new System.Windows.Forms.Panel();
+            this.lb_filtro = new System.Windows.Forms.Label();
+            this.cBox_filtro = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.dataGrid_ultimosItens = new System.Windows.Forms.DataGridView();
             this.item = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,21 +57,16 @@
             this.lb_tituloDados = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGrid_clientes = new System.Windows.Forms.DataGridView();
+            this.panel_topBusca = new System.Windows.Forms.Panel();
+            this.cheBox_emDebito = new System.Windows.Forms.CheckBox();
+            this.txt_buscaClie = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_editar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.panel_topBusca = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.cheBox_emDebito = new System.Windows.Forms.CheckBox();
-            this.cheBox_bloqeados = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lb_filtro = new System.Windows.Forms.Label();
-            this.cBox_filtro = new System.Windows.Forms.ComboBox();
-            this.cheBox_fidelidade = new System.Windows.Forms.CheckBox();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_esquerda.SuspendLayout();
             this.panel_esq_botoes.SuspendLayout();
             this.panel_esq_baixo.SuspendLayout();
@@ -77,11 +78,13 @@
             // 
             // pnl_esquerda
             // 
+            this.pnl_esquerda.Controls.Add(this.lb_infoDesconto);
+            this.pnl_esquerda.Controls.Add(this.lb_desconto);
             this.pnl_esquerda.Controls.Add(this.cheBox_fidelidade);
             this.pnl_esquerda.Controls.Add(this.lb_infoStatus);
             this.pnl_esquerda.Controls.Add(this.lb_status);
             this.pnl_esquerda.Controls.Add(this.cBox_cidade);
-            this.pnl_esquerda.Controls.Add(this.maskedTextBox1);
+            this.pnl_esquerda.Controls.Add(this.txt_cpf);
             this.pnl_esquerda.Controls.Add(this.txt_email);
             this.pnl_esquerda.Controls.Add(this.txt_nome);
             this.pnl_esquerda.Controls.Add(this.panel_esq_botoes);
@@ -96,6 +99,34 @@
             this.pnl_esquerda.Name = "pnl_esquerda";
             this.pnl_esquerda.Size = new System.Drawing.Size(297, 415);
             this.pnl_esquerda.TabIndex = 0;
+            // 
+            // lb_infoDesconto
+            // 
+            this.lb_infoDesconto.AutoSize = true;
+            this.lb_infoDesconto.Location = new System.Drawing.Point(229, 172);
+            this.lb_infoDesconto.Name = "lb_infoDesconto";
+            this.lb_infoDesconto.Size = new System.Drawing.Size(21, 13);
+            this.lb_infoDesconto.TabIndex = 15;
+            this.lb_infoDesconto.Text = "0%";
+            // 
+            // lb_desconto
+            // 
+            this.lb_desconto.AutoSize = true;
+            this.lb_desconto.Location = new System.Drawing.Point(175, 172);
+            this.lb_desconto.Name = "lb_desconto";
+            this.lb_desconto.Size = new System.Drawing.Size(56, 13);
+            this.lb_desconto.TabIndex = 14;
+            this.lb_desconto.Text = "Desconto:";
+            // 
+            // cheBox_fidelidade
+            // 
+            this.cheBox_fidelidade.AutoSize = true;
+            this.cheBox_fidelidade.Location = new System.Drawing.Point(178, 152);
+            this.cheBox_fidelidade.Name = "cheBox_fidelidade";
+            this.cheBox_fidelidade.Size = new System.Drawing.Size(74, 17);
+            this.cheBox_fidelidade.TabIndex = 13;
+            this.cheBox_fidelidade.Text = "Fidelidade";
+            this.cheBox_fidelidade.UseVisualStyleBackColor = true;
             // 
             // lb_infoStatus
             // 
@@ -124,13 +155,14 @@
             this.cBox_cidade.Size = new System.Drawing.Size(225, 21);
             this.cBox_cidade.TabIndex = 10;
             // 
-            // maskedTextBox1
+            // txt_cpf
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(66, 96);
-            this.maskedTextBox1.Mask = "000.000.000-0";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(225, 20);
-            this.maskedTextBox1.TabIndex = 9;
+            this.txt_cpf.Location = new System.Drawing.Point(66, 96);
+            this.txt_cpf.Mask = "000.000.000-00";
+            this.txt_cpf.Name = "txt_cpf";
+            this.txt_cpf.Size = new System.Drawing.Size(225, 20);
+            this.txt_cpf.TabIndex = 9;
+            this.txt_cpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cpf_KeyPress);
             // 
             // txt_email
             // 
@@ -138,6 +170,7 @@
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(224, 20);
             this.txt_email.TabIndex = 8;
+            this.txt_email.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_email_KeyPress);
             // 
             // txt_nome
             // 
@@ -168,6 +201,7 @@
             this.btn_limpa.TabIndex = 2;
             this.btn_limpa.Text = "LIMPAR";
             this.btn_limpa.UseVisualStyleBackColor = false;
+            this.btn_limpa.Click += new System.EventHandler(this.btn_limpa_Click);
             // 
             // btn_excluir
             // 
@@ -181,6 +215,7 @@
             this.btn_excluir.TabIndex = 1;
             this.btn_excluir.Text = "EXCLUIR";
             this.btn_excluir.UseVisualStyleBackColor = false;
+            this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
             // 
             // btn_salvar
             // 
@@ -194,6 +229,7 @@
             this.btn_salvar.TabIndex = 0;
             this.btn_salvar.Text = "SALVAR";
             this.btn_salvar.UseVisualStyleBackColor = false;
+            this.btn_salvar.Click += new System.EventHandler(this.btn_salvar_Click);
             // 
             // panel_esq_baixo
             // 
@@ -206,6 +242,34 @@
             this.panel_esq_baixo.Name = "panel_esq_baixo";
             this.panel_esq_baixo.Size = new System.Drawing.Size(297, 168);
             this.panel_esq_baixo.TabIndex = 5;
+            // 
+            // lb_filtro
+            // 
+            this.lb_filtro.AutoSize = true;
+            this.lb_filtro.Location = new System.Drawing.Point(38, 34);
+            this.lb_filtro.Name = "lb_filtro";
+            this.lb_filtro.Size = new System.Drawing.Size(35, 13);
+            this.lb_filtro.TabIndex = 5;
+            this.lb_filtro.Text = "Exibir:";
+            // 
+            // cBox_filtro
+            // 
+            this.cBox_filtro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBox_filtro.FormattingEnabled = true;
+            this.cBox_filtro.Location = new System.Drawing.Point(79, 31);
+            this.cBox_filtro.Name = "cBox_filtro";
+            this.cBox_filtro.Size = new System.Drawing.Size(179, 21);
+            this.cBox_filtro.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(93, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 18);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Ultimos Pedidos";
             // 
             // dataGrid_ultimosItens
             // 
@@ -312,56 +376,49 @@
             this.dataGrid_clientes.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGrid_clientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_clientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
             this.nome,
             this.email,
             this.cpf,
             this.cidade,
-            this.btn_editar});
+            this.status});
             this.dataGrid_clientes.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGrid_clientes.Location = new System.Drawing.Point(0, 45);
+            this.dataGrid_clientes.MultiSelect = false;
             this.dataGrid_clientes.Name = "dataGrid_clientes";
+            this.dataGrid_clientes.ReadOnly = true;
             this.dataGrid_clientes.Size = new System.Drawing.Size(607, 367);
             this.dataGrid_clientes.TabIndex = 0;
-            // 
-            // nome
-            // 
-            this.nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.nome.HeaderText = "Nome";
-            this.nome.Name = "nome";
-            this.nome.Width = 60;
-            // 
-            // email
-            // 
-            this.email.HeaderText = "Email";
-            this.email.Name = "email";
-            // 
-            // cpf
-            // 
-            this.cpf.HeaderText = "CPF";
-            this.cpf.Name = "cpf";
-            // 
-            // cidade
-            // 
-            this.cidade.HeaderText = "Cidade";
-            this.cidade.Name = "cidade";
-            // 
-            // btn_editar
-            // 
-            this.btn_editar.HeaderText = "Editar";
-            this.btn_editar.Name = "btn_editar";
+            this.dataGrid_clientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_clientes_CellContentClick);
             // 
             // panel_topBusca
             // 
             this.panel_topBusca.Controls.Add(this.cheBox_emDebito);
-            this.panel_topBusca.Controls.Add(this.cheBox_bloqeados);
-            this.panel_topBusca.Controls.Add(this.button1);
-            this.panel_topBusca.Controls.Add(this.textBox1);
+            this.panel_topBusca.Controls.Add(this.txt_buscaClie);
             this.panel_topBusca.Controls.Add(this.label1);
             this.panel_topBusca.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_topBusca.Location = new System.Drawing.Point(0, 0);
             this.panel_topBusca.Name = "panel_topBusca";
             this.panel_topBusca.Size = new System.Drawing.Size(607, 45);
             this.panel_topBusca.TabIndex = 1;
+            // 
+            // cheBox_emDebito
+            // 
+            this.cheBox_emDebito.AutoSize = true;
+            this.cheBox_emDebito.Location = new System.Drawing.Point(327, 13);
+            this.cheBox_emDebito.Name = "cheBox_emDebito";
+            this.cheBox_emDebito.Size = new System.Drawing.Size(75, 17);
+            this.cheBox_emDebito.TabIndex = 6;
+            this.cheBox_emDebito.Text = "Em Debito";
+            this.cheBox_emDebito.UseVisualStyleBackColor = true;
+            // 
+            // txt_buscaClie
+            // 
+            this.txt_buscaClie.Location = new System.Drawing.Point(48, 11);
+            this.txt_buscaClie.Name = "txt_buscaClie";
+            this.txt_buscaClie.Size = new System.Drawing.Size(273, 20);
+            this.txt_buscaClie.TabIndex = 1;
+            this.txt_buscaClie.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_buscaClie_KeyUp);
             // 
             // label1
             // 
@@ -372,81 +429,54 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome:";
             // 
-            // textBox1
+            // id
             // 
-            this.textBox1.Location = new System.Drawing.Point(48, 11);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(219, 20);
-            this.textBox1.TabIndex = 1;
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
             // 
-            // button1
+            // nome
             // 
-            this.button1.Location = new System.Drawing.Point(520, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.nome.DataPropertyName = "nome";
+            this.nome.HeaderText = "Nome";
+            this.nome.Name = "nome";
+            this.nome.ReadOnly = true;
+            this.nome.Width = 60;
             // 
-            // cheBox_emDebito
+            // email
             // 
-            this.cheBox_emDebito.AutoSize = true;
-            this.cheBox_emDebito.Location = new System.Drawing.Point(362, 13);
-            this.cheBox_emDebito.Name = "cheBox_emDebito";
-            this.cheBox_emDebito.Size = new System.Drawing.Size(75, 17);
-            this.cheBox_emDebito.TabIndex = 6;
-            this.cheBox_emDebito.Text = "Em Debito";
-            this.cheBox_emDebito.UseVisualStyleBackColor = true;
+            this.email.DataPropertyName = "email";
+            this.email.HeaderText = "Email";
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
             // 
-            // cheBox_bloqeados
+            // cpf
             // 
-            this.cheBox_bloqeados.AutoSize = true;
-            this.cheBox_bloqeados.Location = new System.Drawing.Point(273, 13);
-            this.cheBox_bloqeados.Name = "cheBox_bloqeados";
-            this.cheBox_bloqeados.Size = new System.Drawing.Size(82, 17);
-            this.cheBox_bloqeados.TabIndex = 5;
-            this.cheBox_bloqeados.Text = "Bloqueados";
-            this.cheBox_bloqeados.UseVisualStyleBackColor = true;
+            this.cpf.DataPropertyName = "cpf";
+            this.cpf.HeaderText = "CPF";
+            this.cpf.Name = "cpf";
+            this.cpf.ReadOnly = true;
             // 
-            // label2
+            // cidade
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(93, 3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 18);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Ultimos Pedidos";
+            this.cidade.DataPropertyName = "cidade";
+            this.cidade.HeaderText = "cidade";
+            this.cidade.Name = "cidade";
+            this.cidade.ReadOnly = true;
+            this.cidade.Visible = false;
             // 
-            // lb_filtro
+            // status
             // 
-            this.lb_filtro.AutoSize = true;
-            this.lb_filtro.Location = new System.Drawing.Point(38, 34);
-            this.lb_filtro.Name = "lb_filtro";
-            this.lb_filtro.Size = new System.Drawing.Size(35, 13);
-            this.lb_filtro.TabIndex = 5;
-            this.lb_filtro.Text = "Exibir:";
+            this.status.DataPropertyName = "status";
+            this.status.HeaderText = "status";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            this.status.Visible = false;
             // 
-            // cBox_filtro
-            // 
-            this.cBox_filtro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBox_filtro.FormattingEnabled = true;
-            this.cBox_filtro.Location = new System.Drawing.Point(79, 31);
-            this.cBox_filtro.Name = "cBox_filtro";
-            this.cBox_filtro.Size = new System.Drawing.Size(179, 21);
-            this.cBox_filtro.TabIndex = 4;
-            // 
-            // cheBox_fidelidade
-            // 
-            this.cheBox_fidelidade.AutoSize = true;
-            this.cheBox_fidelidade.Location = new System.Drawing.Point(178, 152);
-            this.cheBox_fidelidade.Name = "cheBox_fidelidade";
-            this.cheBox_fidelidade.Size = new System.Drawing.Size(74, 17);
-            this.cheBox_fidelidade.TabIndex = 13;
-            this.cheBox_fidelidade.Text = "Fidelidade";
-            this.cheBox_fidelidade.UseVisualStyleBackColor = true;
-            // 
-            // Cliente
+            // TelaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -456,10 +486,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Cliente";
+            this.Name = "TelaCliente";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clientes";
-            this.TopMost = true;
+            this.Load += new System.EventHandler(this.Cliente_Load);
             this.pnl_esquerda.ResumeLayout(false);
             this.pnl_esquerda.PerformLayout();
             this.panel_esq_botoes.ResumeLayout(false);
@@ -486,17 +517,12 @@
         private System.Windows.Forms.Label lb_email;
         private System.Windows.Forms.Label lb_nome;
         private System.Windows.Forms.ComboBox cBox_cidade;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox txt_cpf;
         private System.Windows.Forms.TextBox txt_email;
         private System.Windows.Forms.TextBox txt_nome;
         private System.Windows.Forms.DataGridView dataGrid_ultimosItens;
         private System.Windows.Forms.Button btn_salvar;
         private System.Windows.Forms.DataGridView dataGrid_clientes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cpf;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cidade;
-        private System.Windows.Forms.DataGridViewButtonColumn btn_editar;
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.DataGridViewTextBoxColumn item;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidade;
@@ -506,13 +532,19 @@
         private System.Windows.Forms.Button btn_limpa;
         private System.Windows.Forms.Panel panel_topBusca;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_buscaClie;
         private System.Windows.Forms.CheckBox cheBox_emDebito;
-        private System.Windows.Forms.CheckBox cheBox_bloqeados;
         private System.Windows.Forms.Label lb_filtro;
         private System.Windows.Forms.ComboBox cBox_filtro;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cheBox_fidelidade;
+        private System.Windows.Forms.Label lb_infoDesconto;
+        private System.Windows.Forms.Label lb_desconto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cpf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cidade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
     }
 }

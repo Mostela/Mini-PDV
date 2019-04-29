@@ -10,18 +10,19 @@ namespace Classes
     /// <summary>
     /// A classe debito é para os clientes que estão em debito com o caixa
     /// </summary>
-    class Debito : Cliente
+    class Debito
     {
         [BsonId]
-        private int id_cliente { get; set; }
-        private DateTime ultimoPagamento { get; set; }
-        private int parcelas { get; set; }
-        private double valorInicial { get; set; }
-        private double valorRestante { get; set; }
+        public int id_cliente { get; set; }
+        public DateTime ultimoPagamento { get; set; }
+        public int parcelas { get; set; }
+        public double valorInicial { get; set; }
+        public double valorRestante { get; set; }
+        public Cliente Cliente { get; set; }
 
         public Debito()
         {
-            this.id_cliente = this.id;
+            
         }
         /// <summary>
         /// Carrega a classe com os seus metodos
@@ -38,6 +39,7 @@ namespace Classes
             this.parcelas = parcelas;
             this.valorInicial = valorInicial;
             this.valorRestante = valorRestante;
+            this.Cliente = cliente;
         }
         /// <summary>
         /// Adiciona um novo cliente ao debito ou atualiza os dados de um ja existente. Você pode usar para
@@ -86,7 +88,7 @@ namespace Classes
                 {
                     db.GetCollection<Debito>().Delete(this.id_cliente);
                 }
-                Log.GravarLog("Cliente foi removido do debito", antigo: this.id.ToString());
+                Log.GravarLog("Cliente foi removido do debito", antigo: this.id_cliente.ToString());
                 return true;
             }
             catch (Exception)

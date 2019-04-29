@@ -16,9 +16,9 @@ namespace AutoCozinha
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Main());
-            
+
             //INICIA A APLICAÇÃO COM A TELA DE LOGIN
+            Classes.BaseDados.ExisteBase();
             Application.Run(new Telas.Login());
             if (!Classes.Usuario.login)
             {

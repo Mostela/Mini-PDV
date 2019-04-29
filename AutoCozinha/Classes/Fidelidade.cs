@@ -7,9 +7,10 @@ using LiteDB;
 
 namespace Classes
 {
-    class Fidelidade : Cliente
+    class Fidelidade
     {
-        private int id_cliente { get; set; }
+        [BsonId]
+        public int id_cliente { get; set; }
         public double desconto { get; set; }
         /// <summary>
         /// Quantidade de produtos comprados é um atributo de retorno apenas do banco de dados
@@ -19,17 +20,12 @@ namespace Classes
 
         public Fidelidade()
         {
-            this.id_cliente = this.id;
+            
         }
 
         public Fidelidade(int id_cliente)
         {
             this.id_cliente = id_cliente;
-        }
-
-        public Fidelidade(Cliente cliente)
-        {
-            this.id_cliente = cliente.id;
         }
         protected bool Adiciona()
         {
@@ -42,8 +38,9 @@ namespace Classes
                 Log.GravarLog("Novo cliente em fidelidade", novo: this.id_cliente.ToString());
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.GravarLog("Falha adicionar cliente", antigo: ex.Message);
                 return false;
             }
         }
@@ -65,10 +62,31 @@ namespace Classes
             }
         }
 
+        public bool Excluir()
+        {
+            try
+            {
+                using (var db = new LiteDatabase(BaseDados.local))
+                {
+                    db.GetCollection<Fidelidade>().Delete(this.id_cliente);
+                }
+                Log.GravarLog("Cliente fidelidade removido", novo: this.ToString(), antigo: this.desconto.ToString());
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.GravarLog("Falha remover cliente", antigo: ex.Message);
+                return false;
+            }
+        }
+        /// <summary>
+        /// Adiciona um novo cliente caso não esteja ou atualiza caso ja esteja
+        /// </summary>
+        /// <returns></returns>
         public bool NovoFidelidade()
         {
             LiteDatabase lite = new LiteDatabase(BaseDados.local);
-            if(lite.GetCollection<Fidelidade>().FindById(this.id).id != 0)
+            if(!lite.GetCollection<Fidelidade>().Exists(Query.Contains("id_cliente", this.id_cliente.ToString())))
             {
                 return this.Adiciona();
             }

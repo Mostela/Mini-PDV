@@ -30,7 +30,7 @@ namespace Classes
         /// </summary>
         /// <param name="nome"></param>
         /// <returns></returns>
-        public List<Produto> BuscaProdutosEstoque(string nome)
+        public List<Produto> BuscaProdutosEstoque(string nome = null)
         {
             List<Produto> produtos = this.BuscaProdutosEstoque();
             return produtos.Where(x => x.nomeReferencia.Contains(nome)).ToList();
@@ -61,10 +61,23 @@ namespace Classes
             return produtos;
         }
 
-        //PARA ESCREVER EM BREVE
-        public static bool CodigosUsados()
+        /// <summary>
+        /// Verifica se existe codigos usados para que não sejam reptidos na base de dados
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
+        public static bool CodigosUsados(string codigo)
         {
-            return true;
+            try
+            {
+                LiteDatabase lite = new LiteDatabase(BaseDados.local);
+                var dado = lite.GetCollection<Produto>().FindAll().Where(x => !x.codigo.Contains(codigo)).ToList();
+                return dado.Count != 0 ? false : true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

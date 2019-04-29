@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 using LiteDB;
 
 namespace Classes
-{
+{/// <summary>
+/// Classe Cliente opera todas as situações simples entre o cliente
+/// </summary>
     class Cliente
     {
         public int id { get; set; }
-        private string nome { get; set; }
-        private string email { get; set; }
-        private string cpf { get; set; }
-        private string cidade { get; set; }
-        private bool status { get; set; }
+        public string nome { get; set; }
+        public string email { get; set; }
+        public string cpf { get; set; }
+        public string cidade { get; set; }
+        public bool status { get; set; }
         /// <summary>
         /// Cliente vazio
         /// </summary>
@@ -40,7 +42,7 @@ namespace Classes
         /// <param name="cpf"></param>
         /// <param name="cidade"></param>
         /// <param name="status"></param>
-        public Cliente(int id, string nome, string email, string cpf, string cidade, bool status = true)
+        public Cliente(string nome, string email, string cpf, string cidade, bool status = true, int id = 0)
         {
             this.id = id;
             this.nome = nome;
@@ -57,15 +59,18 @@ namespace Classes
         {
             try
             {
+                bool saida;
                 using (var db = new LiteDB.LiteDatabase(BaseDados.local))
                 {
-                    db.GetCollection<Cliente>().Insert(this);
+                    saida = db.GetCollection<Cliente>().Insert(this);
+                    this.id = db.GetCollection<Cliente>().FindOne(Query.Contains("nome", this.nome)).id;
                 }
                 Log.GravarLog("Foi criado um novo cliene", novo: this.id.ToString());
-                return true;
+                return saida;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.GravarLog("Erro novo cliente", antigo: ex.Message);
                 return false;
             }
         }
@@ -74,17 +79,26 @@ namespace Classes
         /// </summary>
         /// <param name="nome"></param>
         /// <returns></returns>
-        public List<Cliente> BuscaCliente(string nome = "")
+        public List<Cliente> BuscaCliente(string nome = null)
+        {
+            List<Cliente> cliente = this.BuscaCliente();
+            return cliente.Where(x => x.nome.Contains(nome)).ToList();
+        }
+        /// <summary>
+        /// Retorna todos os clientes da base
+        /// </summary>
+        /// <returns></returns>
+        public List<Cliente> BuscaCliente()
         {
             List<Cliente> cliente = new List<Cliente>();
             using (var db = new LiteDB.LiteDatabase(BaseDados.local))
             {
-                cliente = db.GetCollection<Cliente>().Find(Query.Contains("nome", nome)).ToList();
+                cliente = db.GetCollection<Cliente>().FindAll().ToList();
             }
             return cliente;
         }
         /// <summary>
-        /// Carregar a classe Cliente antes de usar
+        /// Carregar a classe Cliente antes de usar. Atualiza os dados do usuario no sistema
         /// </summary>
         /// <returns></returns>
         public bool EditarCliente()
@@ -110,10 +124,48 @@ namespace Classes
         /// <returns></returns>
         public static bool ValidaCPF(string CPF)
         {
-            const string Pattern = @"^([0-9]{3})\.?([0-9]{3})\.?([0-9]{3})\-?([0-9]{2})$";
-            return Regex.IsMatch(CPF, Pattern) ? true : false;
+            if (ConsultaCPF(CPF))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-
+        /// <summary>
+        /// Verifica se o email é valido
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public static bool ValidaEmail(string email)
+        {
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+            return match.Success ? true : false;
+        }
+        /// <summary>
+        /// Consulta na base de dados o CPF se não existe ainda
+        /// </summary>
+        /// <param name="cpf"></param>
+        /// <returns></returns>
+        public static bool ConsultaCPF(string cpf)
+        {
+            try
+            {
+                LiteDatabase lite = new LiteDatabase(BaseDados.local);
+                var dados = lite.GetCollection<Cliente>().Find(Query.Contains("cpf", cpf)).ToList();
+                return dados.Count == 0 ? true : false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Busca e exlui o cliente em todas as bases de dados
+        /// </summary>
+        /// <returns></returns>
         public bool ExcluirCliente()
         {
             try
@@ -122,7 +174,7 @@ namespace Classes
                 bool limpo = false;
 
                 var emDebito = lite.GetCollection<Debito>().FindById(this.id);
-                if(emDebito.nome != null)
+                if(emDebito == null)
                 {
                     if (lite.GetCollection<Debito>().Delete(this.id))
                     {
@@ -147,8 +199,9 @@ namespace Classes
                 
                 return limpo;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.GravarLog("Erro eliminar cliente do sistema", antigo: this.id.ToString(), novo: ex.Message);
                 return false;
             }
         }

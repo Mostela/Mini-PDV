@@ -18,6 +18,14 @@
 #### * Visual Studio Enterpreise 2017 version for Students
 #### * Banco de dados orientado a documentos [LiteDB](https://www.litedb.org/)
 
+
+## PARA UTILIZAR
+#### O propio programa ira criar a sua base de dados com alguns dados padrões quando rodar pela primeira vez, dados como email e senha de login, categoria de produtos e cidades para os clientes.
+#### PARA REALIZAR O LOGIN
+### Email: **admin@admin**
+### Senha: **1234578**
+#### **NÃO ESQUEÇA DE MUDAR A SENHA APÓS O PRIMEIRO LOGIN**
+
 ## ALUNOS
 #### João Carlos Camargo Andrade
 ###### Twitter: [@Mostela_](https://twitter.com/mostela_)
