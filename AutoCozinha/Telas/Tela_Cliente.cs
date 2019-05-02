@@ -99,10 +99,19 @@ namespace AutoCozinha.Telas
 
         private void Cliente_Load(object sender, EventArgs e)
         {
-            this.CarregaTabela();
             cBox_cidade.ValueMember = "id";
             cBox_cidade.DisplayMember = "nome";
             cBox_cidade.DataSource = Classes.ListaCidades.Listar();
+
+            if(Classes.BuscaCliente.nome != null)
+            {
+                txt_buscaClie.Text = Classes.BuscaCliente.nome;
+                dataGrid_clientes.DataSource = atualCliente.BuscaCliente(Classes.BuscaCliente.nome);
+            }
+            else
+            {
+                this.CarregaTabela();
+            }
 
         }
 

@@ -98,6 +98,22 @@ namespace Classes
             return cliente;
         }
         /// <summary>
+        /// Defina o CPF o nome não é usado nessa busca
+        /// </summary>
+        /// <param name="Cpf"></param>
+        /// <param name="nome"></param>
+        /// <returns></returns>
+        public List<Cliente> BuscaCliente(string Cpf, string nome = null)
+        {
+            List<Cliente> cliente = new List<Cliente>();
+            using (var db = new LiteDB.LiteDatabase(BaseDados.local))
+            {
+                cliente = db.GetCollection<Cliente>().Find(Query.Contains("cpf", Cpf)).ToList();
+            }
+            return cliente;
+
+        }
+        /// <summary>
         /// Carregar a classe Cliente antes de usar. Atualiza os dados do usuario no sistema
         /// </summary>
         /// <returns></returns>
@@ -157,8 +173,9 @@ namespace Classes
                 var dados = lite.GetCollection<Cliente>().Find(Query.Contains("cpf", cpf)).ToList();
                 return dados.Count == 0 ? true : false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.GravarLog("Erro consulta CPF", novo: ex.Message);
                 return false;
             }
         }

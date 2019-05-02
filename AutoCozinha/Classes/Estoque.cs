@@ -39,7 +39,7 @@ namespace Classes
         public List<Produto> BuscaProdutosEstoque(string codigo, string nome = null)
         {
             List<Produto> produtos = this.BuscaProdutosEstoque();
-            return produtos.Where(x => x.codigo.Contains(codigo)).ToList();
+            return produtos.Where(x => x.codigo == codigo).ToList();
         }
 
         public List<Produto> BuscaProdutosEstoque(int id_categoria, string codigo= null, string nome = null)
@@ -74,8 +74,29 @@ namespace Classes
                 var dado = lite.GetCollection<Produto>().FindAll().Where(x => !x.codigo.Contains(codigo)).ToList();
                 return dado.Count != 0 ? false : true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.GravarLog("Erro consulta codigos", novo: ex.Message);
+                return false;
+            }
+        }
+        /// <summary>
+        /// Busca os codigos por identico ao contrario de ser por contains
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <param name="overLoad"></param>
+        /// <returns></returns>
+        public static bool CodigosUsados(string codigo, int overLoad = 0)
+        {
+            try
+            {
+                LiteDatabase lite = new LiteDatabase(BaseDados.local);
+                var dado = lite.GetCollection<Produto>().FindAll().Where(x => x.codigo == codigo).ToList();
+                return dado.Count != 0 ? false : true;
+            }
+            catch (Exception ex)
+            {
+                Log.GravarLog("Erro consulta codigos", novo: ex.Message);
                 return false;
             }
         }

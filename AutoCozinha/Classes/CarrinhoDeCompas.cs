@@ -11,7 +11,7 @@ namespace Classes
     /// </summary>
     class CarrinhoDeCompas : Produto
     {
-        public List<CarrinhoDeCompas> carrinhoDeCompas { get; set; }
+        public List<CarrinhoDeCompas> carrinhoDeCompas = new List<CarrinhoDeCompas>();
         /// <summary>
         /// Construtor vazio
         /// </summary>
@@ -46,7 +46,7 @@ namespace Classes
         /// <param name="preco"></param>
         public void AdicionaCarrinho(int id, string nome, int quantidade, double preco)
         {
-            this.carrinhoDeCompas.Add(new CarrinhoDeCompas(id,nome,quantidade,preco));
+            this.carrinhoDeCompas.Add(new CarrinhoDeCompas(id, nome, quantidade, preco));
         }
         /// <summary>
         /// Altera um elemento no carrinho de compras
@@ -55,13 +55,29 @@ namespace Classes
         /// <param name="nome"></param>
         /// <param name="quantidade"></param>
         /// <param name="preco"></param>
-        public void EditaCarrinho(int id, string nome = null, int quantidade = 1, double preco = 1.0)
+        public void EditaCarrinho(int id, string nome = null, int quantidade = 1, double preco = 1.0, bool aumentaQuantia = false)
         {
             if(this.carrinhoDeCompas.Exists(x => x.ID == id))
             {
-                this.carrinhoDeCompas[id].nomeReferencia = nome;
-                this.carrinhoDeCompas[id].quantidade = quantidade;
-                this.carrinhoDeCompas[id].preco = float.Parse(preco.ToString());
+                int id_found = 0;
+                foreach(CarrinhoDeCompas busca in carrinhoDeCompas)
+                {
+                    if(busca.ID == id)
+                    {
+                        break;
+                    }
+                    id_found++;
+                }
+                this.carrinhoDeCompas[id_found].nomeReferencia = nome;
+                this.carrinhoDeCompas[id_found].preco = float.Parse(preco.ToString());
+                if (aumentaQuantia)
+                {
+                    this.carrinhoDeCompas[id_found].quantidade++;
+                }
+                else
+                {
+                    this.carrinhoDeCompas[id_found].quantidade = quantidade;
+                }
             }
         }
         /// <summary>
@@ -70,12 +86,40 @@ namespace Classes
         /// <param name="id"></param>
         public void RemoveCarrinho(int id)
         {
-            this.carrinhoDeCompas.RemoveAt(id);
+            int id_remove = 0;
+            foreach(CarrinhoDeCompas carro in carrinhoDeCompas)
+            {
+                if (carro.ID == id)
+                {
+                    this.carrinhoDeCompas.RemoveAt(id_remove);
+                    break;
+                }
+                else
+                {
+                    id_remove++;
+                }
+            }
+            
         }
-
-        protected void LimpaLista()
+        /// <summary>
+        /// Após a compra limpar a lista
+        /// </summary>
+        public void LimpaLista()
         {
             this.carrinhoDeCompas.Clear();
+        }
+        /// <summary>
+        /// Calcula o valor total de itens na lista
+        /// </summary>
+        /// <returns></returns>
+        public double CalculaTotal()
+        {
+            double pote = 0;
+            foreach(CarrinhoDeCompas car in carrinhoDeCompas)
+            {
+                pote += car.preco * car.quantidade;
+            }
+            return pote;
         }
     }
 }

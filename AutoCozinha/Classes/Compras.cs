@@ -17,5 +17,6 @@ namespace Classes
         public CarrinhoDeCompas carrinho { set; get; }
         public DateTime date = DateTime.Today;
         public Cliente Cliente { set; get; }
-}
+
+    }
 }
