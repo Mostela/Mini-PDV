@@ -43,13 +43,8 @@
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_salvar = new System.Windows.Forms.Button();
             this.panel_esq_baixo = new System.Windows.Forms.Panel();
-            this.lb_filtro = new System.Windows.Forms.Label();
-            this.cBox_filtro = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGrid_ultimosItens = new System.Windows.Forms.DataGridView();
-            this.item = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.data_pagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lb_cidade = new System.Windows.Forms.Label();
             this.lb_cpf = new System.Windows.Forms.Label();
             this.lb_email = new System.Windows.Forms.Label();
@@ -57,16 +52,18 @@
             this.lb_tituloDados = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGrid_clientes = new System.Windows.Forms.DataGridView();
-            this.panel_topBusca = new System.Windows.Forms.Panel();
-            this.cheBox_emDebito = new System.Windows.Forms.CheckBox();
-            this.txt_buscaClie = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel_topBusca = new System.Windows.Forms.Panel();
+            this.txt_buscaClie = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.metodo_pagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_esquerda.SuspendLayout();
             this.panel_esq_botoes.SuspendLayout();
             this.panel_esq_baixo.SuspendLayout();
@@ -233,8 +230,6 @@
             // 
             // panel_esq_baixo
             // 
-            this.panel_esq_baixo.Controls.Add(this.lb_filtro);
-            this.panel_esq_baixo.Controls.Add(this.cBox_filtro);
             this.panel_esq_baixo.Controls.Add(this.label2);
             this.panel_esq_baixo.Controls.Add(this.dataGrid_ultimosItens);
             this.panel_esq_baixo.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -242,24 +237,6 @@
             this.panel_esq_baixo.Name = "panel_esq_baixo";
             this.panel_esq_baixo.Size = new System.Drawing.Size(297, 168);
             this.panel_esq_baixo.TabIndex = 5;
-            // 
-            // lb_filtro
-            // 
-            this.lb_filtro.AutoSize = true;
-            this.lb_filtro.Location = new System.Drawing.Point(38, 34);
-            this.lb_filtro.Name = "lb_filtro";
-            this.lb_filtro.Size = new System.Drawing.Size(35, 13);
-            this.lb_filtro.TabIndex = 5;
-            this.lb_filtro.Text = "Exibir:";
-            // 
-            // cBox_filtro
-            // 
-            this.cBox_filtro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBox_filtro.FormattingEnabled = true;
-            this.cBox_filtro.Location = new System.Drawing.Point(79, 31);
-            this.cBox_filtro.Name = "cBox_filtro";
-            this.cBox_filtro.Size = new System.Drawing.Size(179, 21);
-            this.cBox_filtro.TabIndex = 4;
             // 
             // label2
             // 
@@ -280,38 +257,17 @@
             this.dataGrid_ultimosItens.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGrid_ultimosItens.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_ultimosItens.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.item,
-            this.quantidade,
-            this.data_pagamento});
+            this.date,
+            this.total,
+            this.metodo_pagamento});
             this.dataGrid_ultimosItens.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGrid_ultimosItens.Location = new System.Drawing.Point(0, 58);
+            this.dataGrid_ultimosItens.Location = new System.Drawing.Point(0, 36);
             this.dataGrid_ultimosItens.MultiSelect = false;
             this.dataGrid_ultimosItens.Name = "dataGrid_ultimosItens";
             this.dataGrid_ultimosItens.ReadOnly = true;
             this.dataGrid_ultimosItens.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.dataGrid_ultimosItens.Size = new System.Drawing.Size(297, 110);
+            this.dataGrid_ultimosItens.Size = new System.Drawing.Size(297, 132);
             this.dataGrid_ultimosItens.TabIndex = 2;
-            // 
-            // item
-            // 
-            this.item.HeaderText = "Item";
-            this.item.Name = "item";
-            this.item.ReadOnly = true;
-            this.item.Width = 52;
-            // 
-            // quantidade
-            // 
-            this.quantidade.HeaderText = "Quantidade";
-            this.quantidade.Name = "quantidade";
-            this.quantidade.ReadOnly = true;
-            this.quantidade.Width = 87;
-            // 
-            // data_pagamento
-            // 
-            this.data_pagamento.HeaderText = "Data pagamento";
-            this.data_pagamento.Name = "data_pagamento";
-            this.data_pagamento.ReadOnly = true;
-            this.data_pagamento.Width = 102;
             // 
             // lb_cidade
             // 
@@ -391,44 +347,6 @@
             this.dataGrid_clientes.TabIndex = 0;
             this.dataGrid_clientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_clientes_CellContentClick);
             // 
-            // panel_topBusca
-            // 
-            this.panel_topBusca.Controls.Add(this.cheBox_emDebito);
-            this.panel_topBusca.Controls.Add(this.txt_buscaClie);
-            this.panel_topBusca.Controls.Add(this.label1);
-            this.panel_topBusca.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_topBusca.Location = new System.Drawing.Point(0, 0);
-            this.panel_topBusca.Name = "panel_topBusca";
-            this.panel_topBusca.Size = new System.Drawing.Size(607, 45);
-            this.panel_topBusca.TabIndex = 1;
-            // 
-            // cheBox_emDebito
-            // 
-            this.cheBox_emDebito.AutoSize = true;
-            this.cheBox_emDebito.Location = new System.Drawing.Point(327, 13);
-            this.cheBox_emDebito.Name = "cheBox_emDebito";
-            this.cheBox_emDebito.Size = new System.Drawing.Size(75, 17);
-            this.cheBox_emDebito.TabIndex = 6;
-            this.cheBox_emDebito.Text = "Em Debito";
-            this.cheBox_emDebito.UseVisualStyleBackColor = true;
-            // 
-            // txt_buscaClie
-            // 
-            this.txt_buscaClie.Location = new System.Drawing.Point(48, 11);
-            this.txt_buscaClie.Name = "txt_buscaClie";
-            this.txt_buscaClie.Size = new System.Drawing.Size(273, 20);
-            this.txt_buscaClie.TabIndex = 1;
-            this.txt_buscaClie.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_buscaClie_KeyUp);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nome:";
-            // 
             // id
             // 
             this.id.DataPropertyName = "id";
@@ -475,6 +393,57 @@
             this.status.Name = "status";
             this.status.ReadOnly = true;
             this.status.Visible = false;
+            // 
+            // panel_topBusca
+            // 
+            this.panel_topBusca.Controls.Add(this.txt_buscaClie);
+            this.panel_topBusca.Controls.Add(this.label1);
+            this.panel_topBusca.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_topBusca.Location = new System.Drawing.Point(0, 0);
+            this.panel_topBusca.Name = "panel_topBusca";
+            this.panel_topBusca.Size = new System.Drawing.Size(607, 45);
+            this.panel_topBusca.TabIndex = 1;
+            // 
+            // txt_buscaClie
+            // 
+            this.txt_buscaClie.Location = new System.Drawing.Point(48, 11);
+            this.txt_buscaClie.Name = "txt_buscaClie";
+            this.txt_buscaClie.Size = new System.Drawing.Size(273, 20);
+            this.txt_buscaClie.TabIndex = 1;
+            this.txt_buscaClie.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_buscaClie_KeyUp);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nome:";
+            // 
+            // date
+            // 
+            this.date.DataPropertyName = "date_Date";
+            this.date.HeaderText = "Data";
+            this.date.Name = "date";
+            this.date.ReadOnly = true;
+            this.date.Width = 55;
+            // 
+            // total
+            // 
+            this.total.DataPropertyName = "total";
+            this.total.HeaderText = "Total";
+            this.total.Name = "total";
+            this.total.ReadOnly = true;
+            this.total.Width = 56;
+            // 
+            // metodo_pagamento
+            // 
+            this.metodo_pagamento.DataPropertyName = "metodo_pagamento";
+            this.metodo_pagamento.HeaderText = "Metodo Pagamento";
+            this.metodo_pagamento.Name = "metodo_pagamento";
+            this.metodo_pagamento.ReadOnly = true;
+            this.metodo_pagamento.Width = 114;
             // 
             // TelaCliente
             // 
@@ -524,18 +493,12 @@
         private System.Windows.Forms.Button btn_salvar;
         private System.Windows.Forms.DataGridView dataGrid_clientes;
         private System.Windows.Forms.Button btn_excluir;
-        private System.Windows.Forms.DataGridViewTextBoxColumn item;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantidade;
-        private System.Windows.Forms.DataGridViewTextBoxColumn data_pagamento;
         private System.Windows.Forms.Label lb_infoStatus;
         private System.Windows.Forms.Label lb_status;
         private System.Windows.Forms.Button btn_limpa;
         private System.Windows.Forms.Panel panel_topBusca;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_buscaClie;
-        private System.Windows.Forms.CheckBox cheBox_emDebito;
-        private System.Windows.Forms.Label lb_filtro;
-        private System.Windows.Forms.ComboBox cBox_filtro;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cheBox_fidelidade;
         private System.Windows.Forms.Label lb_infoDesconto;
@@ -546,5 +509,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cpf;
         private System.Windows.Forms.DataGridViewTextBoxColumn cidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn metodo_pagamento;
     }
 }

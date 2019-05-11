@@ -15,6 +15,12 @@ namespace AutoCozinha.Telas
         public TelaCliente()
         {
             InitializeComponent();
+            switch (Classes.Usuario.nivelAcessoHabilitado)
+            {
+                case 1:
+                    pnl_esquerda.Hide();
+                    break;
+            }
         }
         /// <summary>
         /// Marca como valido o CPF para realizar o cadastro ou alteração no cliente
@@ -203,9 +209,19 @@ namespace AutoCozinha.Telas
                 cheBox_fidelidade.Checked = false;
                 lb_infoDesconto.Text = String.Format("{0}%", 0);
             }
-            
-            
+
+            this.CarregaUltimaCompra();
         }
+        /// <summary>
+        /// Carrega o dataGrid com as ultimas compras
+        /// </summary>
+        private void CarregaUltimaCompra()
+        {
+            Classes.Compras compras = new Classes.Compras();
+            dataGrid_ultimosItens.AutoGenerateColumns = false;
+            dataGrid_ultimosItens.DataSource = compras.UltimasCompras(atualCliente.id);
+        }
+
 
         private void btn_excluir_Click(object sender, EventArgs e)
         {

@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(form_principal));
             this.barra_geral = new System.Windows.Forms.MenuStrip();
             this.clienteToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.novoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_novoClie = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.emDebitoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bloqueadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,7 +120,6 @@
             this.alterarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pan_barraInfo = new System.Windows.Forms.Panel();
             this.btn_reset = new System.Windows.Forms.Button();
-            this.image_lista_main = new System.Windows.Forms.ImageList(this.components);
             this.pan_esquerda = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGrid_produtos = new System.Windows.Forms.DataGridView();
@@ -140,6 +138,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pan_direita = new System.Windows.Forms.Panel();
             this.dataGrid_carrinho = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carro_produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carro_valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carro_quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pan_cod_produto = new System.Windows.Forms.Panel();
             this.picBox_codebar = new System.Windows.Forms.PictureBox();
             this.tx_codProd = new System.Windows.Forms.TextBox();
@@ -147,7 +149,6 @@
             this.pan_dir_options = new System.Windows.Forms.Panel();
             this.num_itens = new System.Windows.Forms.NumericUpDown();
             this.lb_quantidade = new System.Windows.Forms.Label();
-            this.btn_remover = new System.Windows.Forms.Button();
             this.cBox_Desconto = new System.Windows.Forms.ComboBox();
             this.btn_aplicaDesconto = new System.Windows.Forms.Button();
             this.btn_pagar = new System.Windows.Forms.Button();
@@ -162,23 +163,19 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.lb_descontoTotal = new System.Windows.Forms.Label();
-            this.lb_imposto = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tx_troco = new System.Windows.Forms.TextBox();
             this.lb_valorRecebido = new System.Windows.Forms.Label();
             this.lb_troco = new System.Windows.Forms.Label();
             this.gpBox_metodo = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radio_debito = new System.Windows.Forms.RadioButton();
+            this.radio_credito = new System.Windows.Forms.RadioButton();
             this.radio_dinheiro = new System.Windows.Forms.RadioButton();
             this.lb_valorFinal = new System.Windows.Forms.Label();
             this.panel_botoes = new System.Windows.Forms.Panel();
             this.btn_emitirComprovante = new System.Windows.Forms.Button();
             this.btn_pagarCentro = new System.Windows.Forms.Button();
             this.btn_novaCompra = new System.Windows.Forms.Button();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.carro_produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.carro_valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.carro_quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.impimir_comprovante = new System.Windows.Forms.PrintPreviewDialog();
             this.barra_geral.SuspendLayout();
             this.menu_telaMain.SuspendLayout();
             this.pan_barraInfo.SuspendLayout();
@@ -225,7 +222,7 @@
             // 
             this.clienteToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buscarToolStripMenuItem,
-            this.novoToolStripMenuItem,
+            this.menu_novoClie,
             this.toolStripSeparator2,
             this.emDebitoToolStripMenuItem,
             this.bloqueadosToolStripMenuItem});
@@ -241,14 +238,15 @@
             this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
             this.buscarToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.buscarToolStripMenuItem.Text = "Buscar";
+            this.buscarToolStripMenuItem.Click += new System.EventHandler(this.buscarToolStripMenuItem_Click);
             // 
-            // novoToolStripMenuItem
+            // menu_novoClie
             // 
-            this.novoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("novoToolStripMenuItem.Image")));
-            this.novoToolStripMenuItem.Name = "novoToolStripMenuItem";
-            this.novoToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.novoToolStripMenuItem.Text = "Novo";
-            this.novoToolStripMenuItem.Click += new System.EventHandler(this.novoToolStripMenuItem_Click);
+            this.menu_novoClie.Image = ((System.Drawing.Image)(resources.GetObject("menu_novoClie.Image")));
+            this.menu_novoClie.Name = "menu_novoClie";
+            this.menu_novoClie.Size = new System.Drawing.Size(136, 22);
+            this.menu_novoClie.Text = "Novo";
+            this.menu_novoClie.Click += new System.EventHandler(this.novoToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -261,6 +259,7 @@
             this.emDebitoToolStripMenuItem.Name = "emDebitoToolStripMenuItem";
             this.emDebitoToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.emDebitoToolStripMenuItem.Text = "Em debito";
+            this.emDebitoToolStripMenuItem.Visible = false;
             // 
             // bloqueadosToolStripMenuItem
             // 
@@ -268,6 +267,7 @@
             this.bloqueadosToolStripMenuItem.Name = "bloqueadosToolStripMenuItem";
             this.bloqueadosToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.bloqueadosToolStripMenuItem.Text = "Bloqueados";
+            this.bloqueadosToolStripMenuItem.Visible = false;
             // 
             // produtosToolStripMenuItem
             // 
@@ -286,7 +286,7 @@
             // 
             this.cadastrarNovoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cadastrarNovoToolStripMenuItem.Image")));
             this.cadastrarNovoToolStripMenuItem.Name = "cadastrarNovoToolStripMenuItem";
-            this.cadastrarNovoToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.cadastrarNovoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cadastrarNovoToolStripMenuItem.Text = "Cadastrar novo";
             this.cadastrarNovoToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovoToolStripMenuItem_Click);
             // 
@@ -294,20 +294,21 @@
             // 
             this.pesquisarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pesquisarToolStripMenuItem.Image")));
             this.pesquisarToolStripMenuItem.Name = "pesquisarToolStripMenuItem";
-            this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pesquisarToolStripMenuItem.Text = "Pesquisar";
+            this.pesquisarToolStripMenuItem.Click += new System.EventHandler(this.pesquisarToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // emEnvioToolStripMenuItem
             // 
             this.emEnvioToolStripMenuItem.Enabled = false;
             this.emEnvioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("emEnvioToolStripMenuItem.Image")));
             this.emEnvioToolStripMenuItem.Name = "emEnvioToolStripMenuItem";
-            this.emEnvioToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.emEnvioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.emEnvioToolStripMenuItem.Text = "Para receber";
             this.emEnvioToolStripMenuItem.Visible = false;
             // 
@@ -946,7 +947,6 @@
             // 
             this.btn_reset.Dock = System.Windows.Forms.DockStyle.Right;
             this.btn_reset.ImageIndex = 29;
-            this.btn_reset.ImageList = this.image_lista_main;
             this.btn_reset.Location = new System.Drawing.Point(992, 0);
             this.btn_reset.Name = "btn_reset";
             this.btn_reset.Size = new System.Drawing.Size(126, 35);
@@ -956,55 +956,6 @@
             this.btn_reset.UseVisualStyleBackColor = true;
             this.btn_reset.Visible = false;
             this.btn_reset.Click += new System.EventHandler(this.btn_reset_Click);
-            // 
-            // image_lista_main
-            // 
-            this.image_lista_main.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("image_lista_main.ImageStream")));
-            this.image_lista_main.TransparentColor = System.Drawing.Color.Transparent;
-            this.image_lista_main.Images.SetKeyName(0, "001-cv.png");
-            this.image_lista_main.Images.SetKeyName(1, "002-blog.png");
-            this.image_lista_main.Images.SetKeyName(2, "003-handshake.png");
-            this.image_lista_main.Images.SetKeyName(3, "004-list.png");
-            this.image_lista_main.Images.SetKeyName(4, "005-searching.png");
-            this.image_lista_main.Images.SetKeyName(5, "006-money.png");
-            this.image_lista_main.Images.SetKeyName(6, "007-credit-card.png");
-            this.image_lista_main.Images.SetKeyName(7, "008-money-bag.png");
-            this.image_lista_main.Images.SetKeyName(8, "009-file.png");
-            this.image_lista_main.Images.SetKeyName(9, "010-file-1.png");
-            this.image_lista_main.Images.SetKeyName(10, "011-clipboard.png");
-            this.image_lista_main.Images.SetKeyName(11, "012-add-file.png");
-            this.image_lista_main.Images.SetKeyName(12, "013-file-2.png");
-            this.image_lista_main.Images.SetKeyName(13, "014-file-3.png");
-            this.image_lista_main.Images.SetKeyName(14, "015-file-4.png");
-            this.image_lista_main.Images.SetKeyName(15, "016-file-5.png");
-            this.image_lista_main.Images.SetKeyName(16, "017-folder.png");
-            this.image_lista_main.Images.SetKeyName(17, "018-file-6.png");
-            this.image_lista_main.Images.SetKeyName(18, "019-folder-1.png");
-            this.image_lista_main.Images.SetKeyName(19, "020-folder-2.png");
-            this.image_lista_main.Images.SetKeyName(20, "021-folder-3.png");
-            this.image_lista_main.Images.SetKeyName(21, "022-file-7.png");
-            this.image_lista_main.Images.SetKeyName(22, "023-calculator.png");
-            this.image_lista_main.Images.SetKeyName(23, "024-box.png");
-            this.image_lista_main.Images.SetKeyName(24, "025-shopping-cart.png");
-            this.image_lista_main.Images.SetKeyName(25, "026-mayonnaise.png");
-            this.image_lista_main.Images.SetKeyName(26, "027-coupon.png");
-            this.image_lista_main.Images.SetKeyName(27, "028-heart.png");
-            this.image_lista_main.Images.SetKeyName(28, "029-wifi.png");
-            this.image_lista_main.Images.SetKeyName(29, "030-refresh.png");
-            this.image_lista_main.Images.SetKeyName(30, "031-shopping-cart-1.png");
-            this.image_lista_main.Images.SetKeyName(31, "032-document.png");
-            this.image_lista_main.Images.SetKeyName(32, "033-newspaper.png");
-            this.image_lista_main.Images.SetKeyName(33, "034-calendar.png");
-            this.image_lista_main.Images.SetKeyName(34, "035-process.png");
-            this.image_lista_main.Images.SetKeyName(35, "036-shield.png");
-            this.image_lista_main.Images.SetKeyName(36, "037-assistance.png");
-            this.image_lista_main.Images.SetKeyName(37, "038-fax.png");
-            this.image_lista_main.Images.SetKeyName(38, "039-chat.png");
-            this.image_lista_main.Images.SetKeyName(39, "040-id-card.png");
-            this.image_lista_main.Images.SetKeyName(40, "041-map.png");
-            this.image_lista_main.Images.SetKeyName(41, "042-agenda.png");
-            this.image_lista_main.Images.SetKeyName(42, "043-agenda-1.png");
-            this.image_lista_main.Images.SetKeyName(43, "044-photo.png");
             // 
             // pan_esquerda
             // 
@@ -1198,6 +1149,39 @@
             this.dataGrid_carrinho.TabIndex = 3;
             this.dataGrid_carrinho.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_carrinho_CellContentClick);
             // 
+            // id
+            // 
+            this.id.DataPropertyName = "ID";
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            this.id.Width = 40;
+            // 
+            // carro_produto
+            // 
+            this.carro_produto.DataPropertyName = "nomeReferencia";
+            this.carro_produto.HeaderText = "Produto";
+            this.carro_produto.Name = "carro_produto";
+            this.carro_produto.ReadOnly = true;
+            this.carro_produto.Width = 69;
+            // 
+            // carro_valor
+            // 
+            this.carro_valor.DataPropertyName = "preco";
+            this.carro_valor.HeaderText = "Valor";
+            this.carro_valor.Name = "carro_valor";
+            this.carro_valor.ReadOnly = true;
+            this.carro_valor.Width = 56;
+            // 
+            // carro_quantidade
+            // 
+            this.carro_quantidade.DataPropertyName = "quantidade";
+            this.carro_quantidade.HeaderText = "Quantiadade";
+            this.carro_quantidade.Name = "carro_quantidade";
+            this.carro_quantidade.ReadOnly = true;
+            this.carro_quantidade.Width = 93;
+            // 
             // pan_cod_produto
             // 
             this.pan_cod_produto.Controls.Add(this.picBox_codebar);
@@ -1239,7 +1223,6 @@
             // 
             this.pan_dir_options.Controls.Add(this.num_itens);
             this.pan_dir_options.Controls.Add(this.lb_quantidade);
-            this.pan_dir_options.Controls.Add(this.btn_remover);
             this.pan_dir_options.Controls.Add(this.cBox_Desconto);
             this.pan_dir_options.Controls.Add(this.btn_aplicaDesconto);
             this.pan_dir_options.Controls.Add(this.btn_pagar);
@@ -1251,7 +1234,7 @@
             // 
             // num_itens
             // 
-            this.num_itens.Location = new System.Drawing.Point(94, 61);
+            this.num_itens.Location = new System.Drawing.Point(137, 61);
             this.num_itens.Maximum = new decimal(new int[] {
             50,
             0,
@@ -1274,20 +1257,11 @@
             // lb_quantidade
             // 
             this.lb_quantidade.AutoSize = true;
-            this.lb_quantidade.Location = new System.Drawing.Point(23, 61);
+            this.lb_quantidade.Location = new System.Drawing.Point(66, 61);
             this.lb_quantidade.Name = "lb_quantidade";
             this.lb_quantidade.Size = new System.Drawing.Size(65, 13);
             this.lb_quantidade.TabIndex = 6;
             this.lb_quantidade.Text = "Quantidade:";
-            // 
-            // btn_remover
-            // 
-            this.btn_remover.Location = new System.Drawing.Point(158, 58);
-            this.btn_remover.Name = "btn_remover";
-            this.btn_remover.Size = new System.Drawing.Size(75, 23);
-            this.btn_remover.TabIndex = 4;
-            this.btn_remover.Text = "Remover";
-            this.btn_remover.UseVisualStyleBackColor = true;
             // 
             // cBox_Desconto
             // 
@@ -1311,6 +1285,7 @@
             this.btn_aplicaDesconto.Text = "Aplica desconto";
             this.btn_aplicaDesconto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_aplicaDesconto.UseVisualStyleBackColor = true;
+            this.btn_aplicaDesconto.Click += new System.EventHandler(this.btn_aplicaDesconto_Click);
             // 
             // btn_pagar
             // 
@@ -1322,6 +1297,7 @@
             this.btn_pagar.Text = "Pagar";
             this.btn_pagar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_pagar.UseVisualStyleBackColor = true;
+            this.btn_pagar.Click += new System.EventHandler(this.btn_pagar_Click);
             // 
             // lb_tituloCarrinho
             // 
@@ -1420,8 +1396,7 @@
             // panel7
             // 
             this.panel7.Controls.Add(this.lb_descontoTotal);
-            this.panel7.Controls.Add(this.lb_imposto);
-            this.panel7.Controls.Add(this.textBox4);
+            this.panel7.Controls.Add(this.tx_troco);
             this.panel7.Controls.Add(this.lb_valorRecebido);
             this.panel7.Controls.Add(this.lb_troco);
             this.panel7.Location = new System.Drawing.Point(4, 119);
@@ -1432,27 +1407,19 @@
             // lb_descontoTotal
             // 
             this.lb_descontoTotal.AutoSize = true;
-            this.lb_descontoTotal.Location = new System.Drawing.Point(134, 58);
+            this.lb_descontoTotal.Location = new System.Drawing.Point(99, 58);
             this.lb_descontoTotal.Name = "lb_descontoTotal";
             this.lb_descontoTotal.Size = new System.Drawing.Size(73, 13);
             this.lb_descontoTotal.TabIndex = 21;
             this.lb_descontoTotal.Text = "Desconto: 0%";
             // 
-            // lb_imposto
+            // tx_troco
             // 
-            this.lb_imposto.AutoSize = true;
-            this.lb_imposto.Location = new System.Drawing.Point(8, 58);
-            this.lb_imposto.Name = "lb_imposto";
-            this.lb_imposto.Size = new System.Drawing.Size(94, 13);
-            this.lb_imposto.TabIndex = 20;
-            this.lb_imposto.Text = "Imposto: R$ 00,00";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(87, 24);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(158, 20);
-            this.textBox4.TabIndex = 19;
+            this.tx_troco.Location = new System.Drawing.Point(87, 24);
+            this.tx_troco.Name = "tx_troco";
+            this.tx_troco.Size = new System.Drawing.Size(158, 20);
+            this.tx_troco.TabIndex = 19;
+            this.tx_troco.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tx_troco_KeyUp);
             // 
             // lb_valorRecebido
             // 
@@ -1475,8 +1442,8 @@
             // 
             // gpBox_metodo
             // 
-            this.gpBox_metodo.Controls.Add(this.radioButton2);
-            this.gpBox_metodo.Controls.Add(this.radioButton1);
+            this.gpBox_metodo.Controls.Add(this.radio_debito);
+            this.gpBox_metodo.Controls.Add(this.radio_credito);
             this.gpBox_metodo.Controls.Add(this.radio_dinheiro);
             this.gpBox_metodo.Location = new System.Drawing.Point(9, 32);
             this.gpBox_metodo.Name = "gpBox_metodo";
@@ -1485,25 +1452,25 @@
             this.gpBox_metodo.TabStop = false;
             this.gpBox_metodo.Text = "Metodo pagamento";
             // 
-            // radioButton2
+            // radio_debito
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(163, 20);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(56, 17);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.Text = "Debito";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radio_debito.AutoSize = true;
+            this.radio_debito.Location = new System.Drawing.Point(163, 20);
+            this.radio_debito.Name = "radio_debito";
+            this.radio_debito.Size = new System.Drawing.Size(56, 17);
+            this.radio_debito.TabIndex = 2;
+            this.radio_debito.Text = "Debito";
+            this.radio_debito.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // radio_credito
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(82, 20);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(58, 17);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.Text = "Credito";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radio_credito.AutoSize = true;
+            this.radio_credito.Location = new System.Drawing.Point(82, 20);
+            this.radio_credito.Name = "radio_credito";
+            this.radio_credito.Size = new System.Drawing.Size(58, 17);
+            this.radio_credito.TabIndex = 1;
+            this.radio_credito.Text = "Credito";
+            this.radio_credito.UseVisualStyleBackColor = true;
             // 
             // radio_dinheiro
             // 
@@ -1549,6 +1516,7 @@
             this.btn_emitirComprovante.Text = "Emitir comprovante";
             this.btn_emitirComprovante.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_emitirComprovante.UseVisualStyleBackColor = true;
+            this.btn_emitirComprovante.Click += new System.EventHandler(this.btn_emitirComprovante_Click);
             // 
             // btn_pagarCentro
             // 
@@ -1561,6 +1529,7 @@
             this.btn_pagarCentro.Text = "Pagar";
             this.btn_pagarCentro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_pagarCentro.UseVisualStyleBackColor = true;
+            this.btn_pagarCentro.Click += new System.EventHandler(this.btn_pagarCentro_Click);
             // 
             // btn_novaCompra
             // 
@@ -1573,39 +1542,17 @@
             this.btn_novaCompra.Text = "Nova compra";
             this.btn_novaCompra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_novaCompra.UseVisualStyleBackColor = true;
+            this.btn_novaCompra.Click += new System.EventHandler(this.btn_novaCompra_Click);
             // 
-            // id
+            // impimir_comprovante
             // 
-            this.id.DataPropertyName = "ID";
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            this.id.Width = 40;
-            // 
-            // carro_produto
-            // 
-            this.carro_produto.DataPropertyName = "nomeReferencia";
-            this.carro_produto.HeaderText = "Produto";
-            this.carro_produto.Name = "carro_produto";
-            this.carro_produto.ReadOnly = true;
-            this.carro_produto.Width = 69;
-            // 
-            // carro_valor
-            // 
-            this.carro_valor.DataPropertyName = "preco";
-            this.carro_valor.HeaderText = "Valor";
-            this.carro_valor.Name = "carro_valor";
-            this.carro_valor.ReadOnly = true;
-            this.carro_valor.Width = 56;
-            // 
-            // carro_quantidade
-            // 
-            this.carro_quantidade.DataPropertyName = "quantidade";
-            this.carro_quantidade.HeaderText = "Quantiadade";
-            this.carro_quantidade.Name = "carro_quantidade";
-            this.carro_quantidade.ReadOnly = true;
-            this.carro_quantidade.Width = 93;
+            this.impimir_comprovante.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.impimir_comprovante.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.impimir_comprovante.ClientSize = new System.Drawing.Size(400, 300);
+            this.impimir_comprovante.Enabled = true;
+            this.impimir_comprovante.Icon = ((System.Drawing.Icon)(resources.GetObject("impimir_comprovante.Icon")));
+            this.impimir_comprovante.Name = "impimir_comprovante";
+            this.impimir_comprovante.Visible = false;
             // 
             // form_principal
             // 
@@ -1703,7 +1650,7 @@
         private System.Windows.Forms.ToolStripMenuItem solicitarOrçamentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adicionarClienteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem buscarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem novoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_novoClie;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem emDebitoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bloqueadosToolStripMenuItem;
@@ -1753,7 +1700,6 @@
         private System.Windows.Forms.ToolStripMenuItem ajudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sobreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reinicarToolStripMenuItem;
-        public System.Windows.Forms.ImageList image_lista_main;
         public System.Windows.Forms.Button btn_reset;
         private System.Windows.Forms.Panel pan_esquerda;
         private System.Windows.Forms.Panel panel3;
@@ -1773,7 +1719,6 @@
         private System.Windows.Forms.ComboBox cBox_Desconto;
         private System.Windows.Forms.Button btn_aplicaDesconto;
         private System.Windows.Forms.Button btn_pagar;
-        private System.Windows.Forms.Button btn_remover;
         private System.Windows.Forms.NumericUpDown num_itens;
         private System.Windows.Forms.Label lb_quantidade;
         private System.Windows.Forms.Panel pan_cod_produto;
@@ -1787,14 +1732,13 @@
         private System.Windows.Forms.Button btn_pagarCentro;
         private System.Windows.Forms.Button btn_novaCompra;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label lb_imposto;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox tx_troco;
         private System.Windows.Forms.Label lb_valorRecebido;
         private System.Windows.Forms.Label lb_troco;
         private System.Windows.Forms.Label lb_valorFinal;
         private System.Windows.Forms.GroupBox gpBox_metodo;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radio_debito;
+        private System.Windows.Forms.RadioButton radio_credito;
         private System.Windows.Forms.RadioButton radio_dinheiro;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
@@ -1816,6 +1760,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn carro_produto;
         private System.Windows.Forms.DataGridViewTextBoxColumn carro_valor;
         private System.Windows.Forms.DataGridViewTextBoxColumn carro_quantidade;
+        private System.Windows.Forms.PrintPreviewDialog impimir_comprovante;
     }
 }
 

@@ -16,7 +16,8 @@ namespace Classes
         /// <param name="mensagem"></param>
         public static void GravarLog(string mensagem, string antigo =null, string novo = null)
         {
-            int ID_user = Classes.NiveisAcesso.ID_Habilitado;
+            int ID_user = Usuario.ID_Habilitado;
+
             
             string DateTime = date.Hour + "-" + date.Minute + "#" + date.Day + "/" + date.Month + "/" + date.Year;
             string mensagemGravar = ID_user + "$" + mensagem + ":" + antigo + " para " + novo + " em " + DateTime + "\r\n -----------------------\r\n";

@@ -11,7 +11,8 @@ namespace Classes
     /// </summary>
     class CarrinhoDeCompas : Produto
     {
-        public List<CarrinhoDeCompas> carrinhoDeCompas = new List<CarrinhoDeCompas>();
+        public List<Produto> carrinhoDeCompas = new List<Produto>();
+        public double Desconto { get; set; }
         /// <summary>
         /// Construtor vazio
         /// </summary>
@@ -33,7 +34,7 @@ namespace Classes
         /// Retorna os elementos presentes no carrinho de compra
         /// </summary>
         /// <returns></returns>
-        public List<CarrinhoDeCompas> UltimosProdutos()
+        public List<Produto> UltimosProdutos()
         {
             return this.carrinhoDeCompas;
         }
@@ -119,7 +120,15 @@ namespace Classes
             {
                 pote += car.preco * car.quantidade;
             }
-            return pote;
+            return pote - (pote * Desconto);
+        }
+        /// <summary>
+        /// Retorna um objeto do propio objeto CarrinhoDeCompras
+        /// </summary>
+        /// <returns></returns>
+        public CarrinhoDeCompas ToObject()
+        {
+            return this;
         }
     }
 }

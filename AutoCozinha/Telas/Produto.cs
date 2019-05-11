@@ -65,6 +65,10 @@ namespace AutoCozinha.Telas
 
         private void Produto_Load(object sender, EventArgs e)
         {
+            if (Classes.Usuario.nivelAcessoHabilitado < 2)
+            {
+                panel_esquerda.Hide();
+            }
             this.CarregaTabela();
             cBox_busca.ValueMember = "id";
             cBox_busca.DisplayMember = "modelo";

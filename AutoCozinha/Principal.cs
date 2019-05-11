@@ -17,17 +17,6 @@ namespace AutoCozinha
         public form_principal()
         {
             InitializeComponent();
-            switch (Classes.NiveisAcesso.nivelAcessoHabilitado)
-            {
-                case 1:
-                    novoUsuarioToolStripMenuItem.HideDropDown();
-                    cadastrarNovoToolStripMenuItem.HideDropDown();
-                    break;
-
-                case 2:
-                    novoUsuarioToolStripMenuItem.HideDropDown();
-                    break;
-            }
         }
         public void CarregaFundo()
         {
@@ -39,6 +28,25 @@ namespace AutoCozinha
                 pan_barraInfo.BackColor = Color.Transparent;
             }
 
+        }
+
+        protected void NivelAcesso()
+        {
+            switch (Classes.Usuario.nivelAcessoHabilitado)
+            {
+                case 1:
+                    menu_novoClie.Visible = false;
+                    adicionarClienteToolStripMenuItem.Visible = false;
+                    novoUsuarioToolStripMenuItem.Visible = false;
+                    cadastrarNovoToolStripMenuItem.Visible = false;
+                    break;
+                case 2:
+                    novoUsuarioToolStripMenuItem.Visible = false;
+                    break;
+                case 3:
+                    MessageBox.Show("Bem Vindo Chefe");
+                    break;
+            }
         }
 
         protected internal void produtoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -156,6 +164,8 @@ namespace AutoCozinha
             cBox_Desconto.DisplayMember = "valor";
             cBox_Desconto.ValueMember = "valDesconto";
             cBox_Desconto.DataSource = Classes.Descontos.Listar();
+
+            this.NivelAcesso();
         }
 
         private void tx_buscaProduto_KeyUp(object sender, KeyEventArgs e)
@@ -209,8 +219,8 @@ namespace AutoCozinha
             {
                 if (!Classes.Cliente.ValidaCPF(CPF))
                 {
-                    var clie = cliente.BuscaCliente(Cpf: CPF);
-                    lb_ValueNomeCliente.Text = clie[0].nome;
+                    this.compras.Cliente = cliente.BuscaCliente(Cpf: CPF, obejto: true);
+                    lb_ValueNomeCliente.Text = this.compras.Cliente.nome;
                 }
                 else
                 {
@@ -238,23 +248,30 @@ namespace AutoCozinha
                 dataGrid_carrinho.DataSource = null;
                 var dados = carro.BuscaProdutosEstoque(codigo: tx_codProd.Text);
                 produtoAtual = dados[0];
-
-                if (!carro.carrinhoDeCompas.Exists(x => x.ID == produtoAtual.ID))
+                if (produtoAtual.quantidade >= num_itens.Value)
                 {
-                    carro.AdicionaCarrinho(produtoAtual.ID, produtoAtual.nomeReferencia, int.Parse(num_itens.Value.ToString()), dados[0].preco);
-                }
-                else
-                {
-                    if(num_itens.Value > 1)
+                    if (!carro.carrinhoDeCompas.Exists(x => x.ID == produtoAtual.ID))
                     {
-                        carro.EditaCarrinho(produtoAtual.ID, nome: produtoAtual.nomeReferencia, preco: produtoAtual.preco, quantidade: int.Parse(num_itens.Value.ToString()));
-                        num_itens.Value = 1;
+                        carro.AdicionaCarrinho(produtoAtual.ID, produtoAtual.nomeReferencia, int.Parse(num_itens.Value.ToString()), dados[0].preco);
                     }
                     else
                     {
-                        carro.EditaCarrinho(produtoAtual.ID, nome: produtoAtual.nomeReferencia, preco: produtoAtual.preco, aumentaQuantia: true);
+                        if (num_itens.Value > 1)
+                        {
+                            carro.EditaCarrinho(produtoAtual.ID, nome: produtoAtual.nomeReferencia, preco: produtoAtual.preco, quantidade: int.Parse(num_itens.Value.ToString()));
+                            num_itens.Value = 1;
+                        }
+                        else
+                        {
+                            carro.EditaCarrinho(produtoAtual.ID, nome: produtoAtual.nomeReferencia, preco: produtoAtual.preco, aumentaQuantia: true);
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Quantidade além do estoque armazenado. " + produtoAtual.nomeReferencia + " possui apenas " + produtoAtual.quantidade);
+                }
+                
 
                 dataGrid_carrinho.AutoGenerateColumns = false;
                 dataGrid_carrinho.DataSource = carro.carrinhoDeCompas;
@@ -262,10 +279,13 @@ namespace AutoCozinha
                 this.AtualizaTotal();
             }
         }
-
+        /// <summary>
+        /// Atualiza o label com o total
+        /// </summary>
         protected void AtualizaTotal()
         {
-            lb_valorFinal.Text = String.Format("TOTAL: R${0}", carro.CalculaTotal().ToString());
+            this.compras.total = carro.CalculaTotal();
+            lb_valorFinal.Text = String.Format("TOTAL: R${0}", this.compras.total.ToString());
         }
 
         private void dataGrid_carrinho_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -280,6 +300,116 @@ namespace AutoCozinha
                 dataGrid_carrinho.DataSource = carro.carrinhoDeCompas;
                 this.AtualizaTotal();
             }
+        }
+        /// <summary>
+        /// Metodo que realiza o pagamento
+        /// </summary>
+        private void PagarValor()
+        {
+            if (this.carro.carrinhoDeCompas != null && tx_troco.Text != null)
+            {
+                //Define os valores para dentro da classe
+                this.compras.carrinho = this.carro.carrinhoDeCompas;
+                if (radio_dinheiro.Checked)
+                {
+                    this.compras.MetodoPagamento = "Dinheiro";
+                } else if (radio_credito.Checked)
+                {
+                    this.compras.MetodoPagamento = "Credito";
+                }
+                else
+                {
+                    this.compras.MetodoPagamento = "Debito";
+                }
+
+
+                if (tx_troco.Text != null)
+                {
+                    this.compras.valorRecebido = double.Parse(tx_troco.Text.ToString());
+                }
+                else
+                {
+                    MessageBox.Show("Valor recebido não informado");
+                }
+
+                if (this.compras.FinalizaCompra())
+                {
+                    MessageBox.Show("Compra feita com sucesso!");
+                    lb_troco.Text = "Troco: R$" + (this.compras.total - this.compras.valorRecebido).ToString();
+
+                    dataGrid_carrinho.DataSource = null;
+                    this.carro.LimpaLista();
+                    this.compras = new Classes.Compras();
+                }
+                else
+                {
+                    MessageBox.Show("Compra não registrada");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Não é possivel comprar nenhum item");
+            }
+        }
+        private void btn_pagar_Click(object sender, EventArgs e)
+        {
+            this.PagarValor();
+            
+        }
+
+        private void btn_pagarCentro_Click(object sender, EventArgs e)
+        {
+            this.PagarValor();
+        }
+
+        private void btn_emitirComprovante_Click(object sender, EventArgs e)
+        {
+            //impimir_comprovante.Document = compras.UltimaCompra();
+            impimir_comprovante.Show();
+        }
+
+        private void btn_aplicaDesconto_Click(object sender, EventArgs e)
+        {
+            this.carro.Desconto = double.Parse(cBox_Desconto.SelectedValue.ToString());
+            lb_descontoTotal.Text = "Desconto: "+(this.carro.Desconto * 100).ToString() + "%";
+            this.AtualizaTotal();
+        }
+
+        private void btn_novaCompra_Click(object sender, EventArgs e)
+        {
+            if(this.carro.carrinhoDeCompas != null)
+            {
+                if(MessageBox.Show("Tem itens no carrinho de compra, deseja uma nova compra","Limpar Carrinho",MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    this.compras = new Classes.Compras();
+                }
+            }
+            else
+            {
+                this.compras = new Classes.Compras();
+            }
+        }
+
+        private void tx_troco_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!Regex.IsMatch(tx_troco.Text, @"^[A-z a-z 0-9]+$"))
+            {
+                MessageBox.Show("Texto não aceitavel");
+            }
+        }
+
+        /* ---------------------------------------
+        * FIM DO CARRINHO DE COMPRAS
+        * --------------------------------------- */
+
+        private void buscarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ChamaCliente();
+        }
+
+        private void pesquisarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ChamaProduto();
         }
     }
 }

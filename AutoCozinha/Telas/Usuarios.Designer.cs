@@ -33,20 +33,20 @@
             this.tx_email = new System.Windows.Forms.TextBox();
             this.tx_nome = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lb_usuariosSistema = new System.Windows.Forms.Label();
             this.lb_nivel = new System.Windows.Forms.Label();
             this.cBox_nivel = new System.Windows.Forms.ComboBox();
             this.btn_desabilitar = new System.Windows.Forms.Button();
             this.btn_novo = new System.Windows.Forms.Button();
-            this.btn_alterar = new System.Windows.Forms.Button();
+            this.btn_salvar = new System.Windows.Forms.Button();
             this.lb_senha = new System.Windows.Forms.Label();
             this.lb_userEmail = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lb_NomeuserAtual = new System.Windows.Forms.Label();
-            this.lb_Titulo = new System.Windows.Forms.Label();
-            this.listBox_registros = new System.Windows.Forms.ListBox();
+            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nivel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_direito.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -62,15 +62,15 @@
             this.panel_direito.Controls.Add(this.cBox_nivel);
             this.panel_direito.Controls.Add(this.btn_desabilitar);
             this.panel_direito.Controls.Add(this.btn_novo);
-            this.panel_direito.Controls.Add(this.btn_alterar);
+            this.panel_direito.Controls.Add(this.btn_salvar);
             this.panel_direito.Controls.Add(this.lb_senha);
             this.panel_direito.Controls.Add(this.lb_userEmail);
             this.panel_direito.Controls.Add(this.label1);
             this.panel_direito.Controls.Add(this.lb_NomeuserAtual);
-            this.panel_direito.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel_direito.Location = new System.Drawing.Point(263, 0);
+            this.panel_direito.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_direito.Location = new System.Drawing.Point(0, 0);
             this.panel_direito.Name = "panel_direito";
-            this.panel_direito.Size = new System.Drawing.Size(208, 409);
+            this.panel_direito.Size = new System.Drawing.Size(216, 409);
             this.panel_direito.TabIndex = 0;
             // 
             // tx_senha
@@ -104,23 +104,14 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nome,
-            this.editar});
+            this.email,
+            this.id,
+            this.nivel});
             this.dataGridView1.Location = new System.Drawing.Point(10, 234);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(195, 167);
             this.dataGridView1.TabIndex = 10;
-            // 
-            // nome
-            // 
-            this.nome.HeaderText = "Nome";
-            this.nome.Name = "nome";
-            this.nome.ReadOnly = true;
-            // 
-            // editar
-            // 
-            this.editar.HeaderText = "Editar";
-            this.editar.Name = "editar";
-            this.editar.ReadOnly = true;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // lb_usuariosSistema
             // 
@@ -158,6 +149,7 @@
             this.btn_desabilitar.TabIndex = 6;
             this.btn_desabilitar.Text = "Desativar";
             this.btn_desabilitar.UseVisualStyleBackColor = true;
+            this.btn_desabilitar.Click += new System.EventHandler(this.btn_desabilitar_Click);
             // 
             // btn_novo
             // 
@@ -167,16 +159,17 @@
             this.btn_novo.TabIndex = 1;
             this.btn_novo.Text = "Novo";
             this.btn_novo.UseVisualStyleBackColor = true;
+            this.btn_novo.Click += new System.EventHandler(this.btn_novo_Click);
             // 
-            // btn_alterar
+            // btn_salvar
             // 
-            this.btn_alterar.Location = new System.Drawing.Point(25, 149);
-            this.btn_alterar.Name = "btn_alterar";
-            this.btn_alterar.Size = new System.Drawing.Size(56, 23);
-            this.btn_alterar.TabIndex = 5;
-            this.btn_alterar.Text = "Salvar";
-            this.btn_alterar.UseVisualStyleBackColor = true;
-            this.btn_alterar.Click += new System.EventHandler(this.btn_alterar_Click);
+            this.btn_salvar.Location = new System.Drawing.Point(25, 149);
+            this.btn_salvar.Name = "btn_salvar";
+            this.btn_salvar.Size = new System.Drawing.Size(56, 23);
+            this.btn_salvar.TabIndex = 5;
+            this.btn_salvar.Text = "Salvar";
+            this.btn_salvar.UseVisualStyleBackColor = true;
+            this.btn_salvar.Click += new System.EventHandler(this.Btn_alterar_Click);
             // 
             // lb_senha
             // 
@@ -215,30 +208,41 @@
             this.lb_NomeuserAtual.TabIndex = 1;
             this.lb_NomeuserAtual.Text = "Nome:";
             // 
-            // lb_Titulo
+            // nome
             // 
-            this.lb_Titulo.AutoSize = true;
-            this.lb_Titulo.Location = new System.Drawing.Point(85, 18);
-            this.lb_Titulo.Name = "lb_Titulo";
-            this.lb_Titulo.Size = new System.Drawing.Size(121, 13);
-            this.lb_Titulo.TabIndex = 1;
-            this.lb_Titulo.Text = "Ultimos registros sistema";
+            this.nome.DataPropertyName = "nome";
+            this.nome.HeaderText = "Nome";
+            this.nome.Name = "nome";
+            this.nome.ReadOnly = true;
             // 
-            // listBox_registros
+            // email
             // 
-            this.listBox_registros.FormattingEnabled = true;
-            this.listBox_registros.Location = new System.Drawing.Point(13, 49);
-            this.listBox_registros.Name = "listBox_registros";
-            this.listBox_registros.Size = new System.Drawing.Size(231, 355);
-            this.listBox_registros.TabIndex = 2;
+            this.email.DataPropertyName = "email";
+            this.email.HeaderText = "email";
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            this.email.Visible = false;
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "ID";
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            // 
+            // nivel
+            // 
+            this.nivel.DataPropertyName = "nivelAcesso";
+            this.nivel.HeaderText = "Nivel";
+            this.nivel.Name = "nivel";
+            this.nivel.ReadOnly = true;
             // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 409);
-            this.Controls.Add(this.listBox_registros);
-            this.Controls.Add(this.lb_Titulo);
+            this.ClientSize = new System.Drawing.Size(216, 409);
             this.Controls.Add(this.panel_direito);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -251,7 +255,6 @@
             this.panel_direito.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -264,17 +267,17 @@
         private System.Windows.Forms.Label lb_senha;
         private System.Windows.Forms.Button btn_desabilitar;
         private System.Windows.Forms.Button btn_novo;
-        private System.Windows.Forms.Button btn_alterar;
+        private System.Windows.Forms.Button btn_salvar;
         private System.Windows.Forms.Label lb_nivel;
         private System.Windows.Forms.ComboBox cBox_nivel;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
-        private System.Windows.Forms.DataGridViewButtonColumn editar;
         private System.Windows.Forms.Label lb_usuariosSistema;
-        private System.Windows.Forms.Label lb_Titulo;
-        private System.Windows.Forms.ListBox listBox_registros;
         private System.Windows.Forms.TextBox tx_senha;
         private System.Windows.Forms.TextBox tx_email;
         private System.Windows.Forms.TextBox tx_nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nivel;
     }
 }

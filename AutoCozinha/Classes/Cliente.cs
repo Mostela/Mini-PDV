@@ -111,7 +111,20 @@ namespace Classes
                 cliente = db.GetCollection<Cliente>().Find(Query.Contains("cpf", Cpf)).ToList();
             }
             return cliente;
-
+        }
+        /// <summary>
+        /// Retorna o cliente buscado pelo CPF como objeto. Para uso na compra
+        /// </summary>
+        /// <param name="Cpf"></param>
+        /// <param name="obejto"></param>
+        /// <returns></returns>
+        public Cliente BuscaCliente(string Cpf, bool obejto = true)
+        {
+            Cliente busClie = new Cliente();
+            LiteDatabase lite = new LiteDatabase(BaseDados.local);
+            var dados =lite.GetCollection<Cliente>().Find(Query.Contains("cpf", Cpf)).ToList();
+            busClie = new Cliente(dados[0].nome, dados[0].email, dados[0].cpf, dados[0].cidade, dados[0].status, dados[0].id);
+            return busClie;
         }
         /// <summary>
         /// Carregar a classe Cliente antes de usar. Atualiza os dados do usuario no sistema

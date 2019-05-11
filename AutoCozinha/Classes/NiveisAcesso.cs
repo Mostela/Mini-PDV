@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    class NiveisAcesso : Usuario
+    class NiveisAcesso
     {
         public int nivel { get; set; }
         public string cargo { get; set; }
