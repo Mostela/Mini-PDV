@@ -36,7 +36,6 @@
             this.tx_email = new System.Windows.Forms.TextBox();
             this.tx_senha = new System.Windows.Forms.TextBox();
             this.btn_acessar = new System.Windows.Forms.Button();
-            this.btn_esqueciSenha = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,23 +104,12 @@
             this.btn_acessar.UseVisualStyleBackColor = false;
             this.btn_acessar.Click += new System.EventHandler(this.btn_acessar_Click);
             // 
-            // btn_esqueciSenha
-            // 
-            this.btn_esqueciSenha.Location = new System.Drawing.Point(13, 249);
-            this.btn_esqueciSenha.Name = "btn_esqueciSenha";
-            this.btn_esqueciSenha.Size = new System.Drawing.Size(103, 23);
-            this.btn_esqueciSenha.TabIndex = 9;
-            this.btn_esqueciSenha.Text = "Esqueci a senha";
-            this.btn_esqueciSenha.UseVisualStyleBackColor = true;
-            this.btn_esqueciSenha.Click += new System.EventHandler(this.btn_esqueciSenha_Click);
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(586, 284);
-            this.Controls.Add(this.btn_esqueciSenha);
             this.Controls.Add(this.btn_acessar);
             this.Controls.Add(this.tx_senha);
             this.Controls.Add(this.tx_email);
@@ -148,6 +136,5 @@
         private System.Windows.Forms.TextBox tx_email;
         private System.Windows.Forms.TextBox tx_senha;
         private System.Windows.Forms.Button btn_acessar;
-        private System.Windows.Forms.Button btn_esqueciSenha;
     }
 }

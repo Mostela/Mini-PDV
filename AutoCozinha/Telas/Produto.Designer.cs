@@ -143,12 +143,7 @@
             // 
             this.text_quantidade.Location = new System.Drawing.Point(77, 215);
             this.text_quantidade.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.text_quantidade.Minimum = new decimal(new int[] {
-            1,
+            5000,
             0,
             0,
             0});

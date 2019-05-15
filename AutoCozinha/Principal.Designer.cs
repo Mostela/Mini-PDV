@@ -286,7 +286,7 @@
             // 
             this.cadastrarNovoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cadastrarNovoToolStripMenuItem.Image")));
             this.cadastrarNovoToolStripMenuItem.Name = "cadastrarNovoToolStripMenuItem";
-            this.cadastrarNovoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastrarNovoToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.cadastrarNovoToolStripMenuItem.Text = "Cadastrar novo";
             this.cadastrarNovoToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovoToolStripMenuItem_Click);
             // 
@@ -294,21 +294,21 @@
             // 
             this.pesquisarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pesquisarToolStripMenuItem.Image")));
             this.pesquisarToolStripMenuItem.Name = "pesquisarToolStripMenuItem";
-            this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.pesquisarToolStripMenuItem.Text = "Pesquisar";
             this.pesquisarToolStripMenuItem.Click += new System.EventHandler(this.pesquisarToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
             // 
             // emEnvioToolStripMenuItem
             // 
             this.emEnvioToolStripMenuItem.Enabled = false;
             this.emEnvioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("emEnvioToolStripMenuItem.Image")));
             this.emEnvioToolStripMenuItem.Name = "emEnvioToolStripMenuItem";
-            this.emEnvioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.emEnvioToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.emEnvioToolStripMenuItem.Text = "Para receber";
             this.emEnvioToolStripMenuItem.Visible = false;
             // 

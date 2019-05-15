@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using LiteDB;
 
 namespace AutoCozinha.Telas
 {
@@ -174,7 +167,6 @@ namespace AutoCozinha.Telas
             usuario.ID = int.Parse(dataGridView1.Rows[indice].Cells["id"].Value.ToString());
             usuario.email = dataGridView1.Rows[indice].Cells["email"].Value.ToString();
             usuario.nome = dataGridView1.Rows[indice].Cells["nome"].Value.ToString();
-            //usuario.nivelAcesso.nivel = int.Parse(dataGridView1.Rows[indice].Cells["Nivel"].Value.ToString());
             this.existeUser = true;
             //cBox_nivel.SelectedValue = usuario.nivelAcesso.nivel;
 

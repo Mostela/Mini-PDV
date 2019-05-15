@@ -20,7 +20,7 @@ namespace AutoCozinha.Telas
 
         private void btn_salvar_Click(object sender, EventArgs e)
         {
-            if (text_codigo.Text != null && tx_nomeProduto.Text != null && text_quantidade.Value > 0 && text_codigo.BackColor == Color.Green)
+            if (tx_nomeProduto.Text != "" && text_quantidade.Value > 0 && this.codigo_valido)
             {
                 var CatSelect = Classes.CategoriaProduto.RetornaCategoria(int.Parse(cBox_categoria.SelectedValue.ToString()));
                 if (this.produto.ID != 0)
@@ -52,7 +52,7 @@ namespace AutoCozinha.Telas
             }
             else
             {
-                MessageBox.Show("Prencha os campos para cadastrar um novo produto");
+                MessageBox.Show("Prencha os campos, nome, codigo e quantidades para cadastrar um novo produto");
             }
         }
 
@@ -106,6 +106,9 @@ namespace AutoCozinha.Telas
             text_codigo.Text = produto.codigo;
             text_descricao.Text = produto.descricao;
             text_quantidade.Value = produto.quantidade;
+            text_codigo.ReadOnly = true;
+            text_codigo.BackColor = Color.Green;
+            this.codigo_valido = true;
         }
 
         private void btn_excluir_Click(object sender, EventArgs e)
@@ -118,6 +121,7 @@ namespace AutoCozinha.Telas
                     {
                         Classes.Log.GravarLog("Foi exlcuido o produto", produto.nomeReferencia);
                         produto.ID = 0;
+                        text_codigo.ReadOnly = false;
                     }
                 }
             }
@@ -138,6 +142,9 @@ namespace AutoCozinha.Telas
             text_codigo.Text = null;
             text_descricao.Text = null;
             text_quantidade.Value = 1;
+            text_codigo.BackColor = DefaultBackColor;
+            this.codigo_valido = false;
+            text_codigo.ReadOnly = false;
         }
 
         private void cheBox_emFalta_CheckedChanged(object sender, EventArgs e)
@@ -171,16 +178,18 @@ namespace AutoCozinha.Telas
                     break;
             }
         }
-
+        protected bool codigo_valido;
         private void text_codigo_KeyUp(object sender, KeyEventArgs e)
         {
             if (Classes.Estoque.CodigosUsados(text_codigo.Text))
             {
-                text_codigo.BackColor = Color.Green;
+                text_codigo.BackColor = Color.Red;
+                this.codigo_valido = false;
             }
             else
             {
-                text_codigo.BackColor = Color.Red;
+                text_codigo.BackColor = Color.Green;
+                this.codigo_valido = true;
             }
         }
     }

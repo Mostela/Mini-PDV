@@ -237,6 +237,7 @@
             this.nivel.HeaderText = "Nivel";
             this.nivel.Name = "nivel";
             this.nivel.ReadOnly = true;
+            this.nivel.Visible = false;
             // 
             // Usuarios
             // 

@@ -31,7 +31,6 @@ namespace Classes
             List<BuscaProdutos> buscas = new List<BuscaProdutos>();
             buscas.Add(new BuscaProdutos(1,"Nome"));
             buscas.Add(new BuscaProdutos(2, "Codigo"));
-            buscas.Add(new BuscaProdutos(3, "Categoria"));
             return buscas;
         }
     }

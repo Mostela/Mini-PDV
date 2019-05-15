@@ -171,7 +171,7 @@ namespace AutoCozinha
         private void tx_buscaProduto_KeyUp(object sender, KeyEventArgs e)
         {
             Classes.Estoque estoque = new Classes.Estoque();
-            if(tx_buscaProduto.Text != " " && tx_buscaProduto.Text != null)
+            if(tx_buscaProduto.Text != "" && tx_buscaProduto.Text != null)
             {
                 if (Regex.IsMatch(tx_buscaProduto.Text, @"^[A-z a-z 0-9]+$"))
                 {
@@ -184,7 +184,6 @@ namespace AutoCozinha
                         case 2:
                             dataGrid_produtos.DataSource = estoque.BuscaProdutosEstoque(codigo: tx_buscaProduto.Text);
                             break;
-
                         default:
                             dataGrid_produtos.DataSource = null;
                             break;
@@ -199,14 +198,17 @@ namespace AutoCozinha
 
         private void btn_buscaCliente_Click(object sender, EventArgs e)
         {
-            if (Regex.IsMatch(tx_buscaCliente.Text, @"^[A-z a-z 0-9]+$"))
+            if(tx_buscaCliente.Text != "" || tx_buscaCliente.Text != null)
             {
-                Classes.BuscaCliente.nome = tx_buscaCliente.Text;
-                this.ChamaCliente();
-            }
-            else
-            {
-                MessageBox.Show("Texto não aceitavel");
+                if (Regex.IsMatch(tx_buscaCliente.Text, @"^[A-z a-z 0-9 \u00C0-\u00FF]+$"))
+                {
+                    Classes.BuscaCliente.nome = tx_buscaCliente.Text;
+                    this.ChamaCliente();
+                }
+                else
+                {
+                    MessageBox.Show("Texto não aceitavel");
+                }
             }
             
         }
@@ -322,20 +324,12 @@ namespace AutoCozinha
                     this.compras.MetodoPagamento = "Debito";
                 }
 
-
-                if (tx_troco.Text != null)
-                {
-                    this.compras.valorRecebido = double.Parse(tx_troco.Text.ToString());
-                }
-                else
-                {
-                    MessageBox.Show("Valor recebido não informado");
-                }
+                this.compras.valorRecebido = double.Parse(tx_troco.Text.ToString());
 
                 if (this.compras.FinalizaCompra())
                 {
                     MessageBox.Show("Compra feita com sucesso!");
-                    lb_troco.Text = "Troco: R$" + (this.compras.total - this.compras.valorRecebido).ToString();
+                    lb_troco.Text = "Troco: R$" + (this.compras.valorRecebido - this.compras.total).ToString();
 
                     dataGrid_carrinho.DataSource = null;
                     this.carro.LimpaLista();
@@ -353,13 +347,32 @@ namespace AutoCozinha
         }
         private void btn_pagar_Click(object sender, EventArgs e)
         {
-            this.PagarValor();
-            
+            this.ValidaPagamento();  
         }
 
         private void btn_pagarCentro_Click(object sender, EventArgs e)
         {
-            this.PagarValor();
+            this.ValidaPagamento();
+        }
+        /// <summary>
+        /// Permite o pagamento caso os dados informados esteja correto ou não
+        /// </summary>
+        protected void ValidaPagamento()
+        {
+            bool troco = false;
+            bool pagar = tx_troco.Text != "" ? true : false;
+            if (pagar)
+            {
+                troco = compras.total <= double.Parse(tx_troco.Text.ToString()) ? true : false;
+            }
+            if(pagar && troco)
+            {
+                this.PagarValor();
+            }
+            else
+            {
+                MessageBox.Show("Não é possivel realizar o pagamento");
+            }
         }
 
         private void btn_emitirComprovante_Click(object sender, EventArgs e)
@@ -392,7 +405,7 @@ namespace AutoCozinha
 
         private void tx_troco_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!Regex.IsMatch(tx_troco.Text, @"^[A-z a-z 0-9]+$"))
+            if (!Regex.IsMatch(tx_troco.Text, @"^[0-9]+$"))
             {
                 MessageBox.Show("Texto não aceitavel");
             }
