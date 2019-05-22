@@ -329,8 +329,9 @@ namespace AutoCozinha
                 if (this.compras.FinalizaCompra())
                 {
                     MessageBox.Show("Compra feita com sucesso!");
+                    this.carro.Desconto = 0;
+                    lb_descontoTotal.Text = "Desconto: " + (this.carro.Desconto * 100).ToString() + "%";
                     lb_troco.Text = "Troco: R$" + (this.compras.valorRecebido - this.compras.total).ToString();
-
                     dataGrid_carrinho.DataSource = null;
                     this.carro.LimpaLista();
                     this.compras = new Classes.Compras();
